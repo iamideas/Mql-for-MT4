@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FA6CBB35-8B87-498E-94B1-B8F60EB8D7E0}</ProjectGuid>
+    <RootNamespace>MQL</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="AccountInfo.h" />
+    <ClInclude Include="ArraySeries.h" />
+    <ClInclude Include="Chart.h" />
+    <ClInclude Include="CheckUp.h" />
+    <ClInclude Include="CommonFun.h" />
+    <ClInclude Include="ConverType.h" />
+    <ClInclude Include="CustomInd.h" />
+    <ClInclude Include="DataStructures.h" />
+    <ClInclude Include="DataType.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="File.h" />
+    <ClInclude Include="Framework\color.h" />
+    <ClInclude Include="Framework\Order.h" />
+    <ClInclude Include="Framework\standardCPPLibrary.h" />
+    <ClInclude Include="GlobalVariable.h" />
+    <ClInclude Include="indicators.h" />
+    <ClInclude Include="MarketInfo.h" />
+    <ClInclude Include="MathTrig.h" />
+    <ClInclude Include="MQLLibrary.h" />
+    <ClInclude Include="objects.h" />
+    <ClInclude Include="Optimization.h" />
+    <ClInclude Include="PriceInfo.h" />
+    <ClInclude Include="stderror.h" />
+    <ClInclude Include="stdlib.h" />
+    <ClInclude Include="string.h" />
+    <ClInclude Include="Terminal.h" />
+    <ClInclude Include="Time.h" />
+    <ClInclude Include="TradeSignals.h" />
+    <ClInclude Include="Trading.h" />
+    <ClInclude Include="WindowInfo.h" />
+    <ClInclude Include="WinUser32.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="Arrays\Array.mqh" />
+    <None Include="Arrays\ArrayChar.mqh" />
+    <None Include="Arrays\ArrayDouble.mqh" />
+    <None Include="Arrays\ArrayFloat.mqh" />
+    <None Include="Arrays\ArrayInt.mqh" />
+    <None Include="Arrays\ArrayLong.mqh" />
+    <None Include="Arrays\ArrayObj.mqh" />
+    <None Include="Arrays\ArrayShort.mqh" />
+    <None Include="Arrays\ArrayString.mqh" />
+    <None Include="Arrays\List.mqh" />
+    <None Include="Arrays\Tree.mqh" />
+    <None Include="Arrays\TreeNode.mqh" />
+    <None Include="Canvas\Canvas.mqh" />
+    <None Include="ChartObjects\ChartObject.mqh" />
+    <None Include="ChartObjects\ChartObjectPanel.mqh" />
+    <None Include="ChartObjects\ChartObjectsArrows.mqh" />
+    <None Include="ChartObjects\ChartObjectsBmpControls.mqh" />
+    <None Include="ChartObjects\ChartObjectsChannels.mqh" />
+    <None Include="ChartObjects\ChartObjectsFibo.mqh" />
+    <None Include="ChartObjects\ChartObjectsGann.mqh" />
+    <None Include="ChartObjects\ChartObjectsLines.mqh" />
+    <None Include="ChartObjects\ChartObjectsShapes.mqh" />
+    <None Include="ChartObjects\ChartObjectsTxtControls.mqh" />
+    <None Include="Charts\Chart.mqh" />
+    <None Include="Controls\BmpButton.mqh" />
+    <None Include="Controls\Button.mqh" />
+    <None Include="Controls\CheckBox.mqh" />
+    <None Include="Controls\CheckGroup.mqh" />
+    <None Include="Controls\ComboBox.mqh" />
+    <None Include="Controls\DateDropList.mqh" />
+    <None Include="Controls\DatePicker.mqh" />
+    <None Include="Controls\Defines.mqh" />
+    <None Include="Controls\Dialog.mqh" />
+    <None Include="Controls\Edit.mqh" />
+    <None Include="Controls\Label.mqh" />
+    <None Include="Controls\ListView.mqh" />
+    <None Include="Controls\Panel.mqh" />
+    <None Include="Controls\Picture.mqh" />
+    <None Include="Controls\RadioButton.mqh" />
+    <None Include="Controls\RadioGroup.mqh" />
+    <None Include="Controls\Rect.mqh" />
+    <None Include="Controls\Scrolls.mqh" />
+    <None Include="Controls\SpinEdit.mqh" />
+    <None Include="Controls\TimePicker.mqh" />
+    <None Include="Controls\Wnd.mqh" />
+    <None Include="Controls\WndClient.mqh" />
+    <None Include="Controls\WndContainer.mqh" />
+    <None Include="Controls\WndObj.mqh" />
+    <None Include="Expert\Expert.mqh" />
+    <None Include="Expert\ExpertBase.mqh" />
+    <None Include="Expert\ExpertMoney.mqh" />
+    <None Include="Expert\ExpertSignal.mqh" />
+    <None Include="Expert\ExpertTrade.mqh" />
+    <None Include="Expert\ExpertTrailing.mqh" />
+    <None Include="Expert\Money\MoneyFixedLot.mqh" />
+    <None Include="Expert\Money\MoneyFixedMargin.mqh" />
+    <None Include="Expert\Money\MoneyFixedRisk.mqh" />
+    <None Include="Expert\Money\MoneyNone.mqh" />
+    <None Include="Expert\Money\MoneySizeOptimized.mqh" />
+    <None Include="Expert\Signal\SignalAC.mqh" />
+    <None Include="Expert\Signal\SignalAMA.mqh" />
+    <None Include="Expert\Signal\SignalAO.mqh" />
+    <None Include="Expert\Signal\SignalBearsPower.mqh" />
+    <None Include="Expert\Signal\SignalBullsPower.mqh" />
+    <None Include="Expert\Signal\SignalCCI.mqh" />
+    <None Include="Expert\Signal\SignalDEMA.mqh" />
+    <None Include="Expert\Signal\SignalDeMarker.mqh" />
+    <None Include="Expert\Signal\SignalEnvelopes.mqh" />
+    <None Include="Expert\Signal\SignalFrAMA.mqh" />
+    <None Include="Expert\Signal\SignalITF.mqh" />
+    <None Include="Expert\Signal\SignalMA.mqh" />
+    <None Include="Expert\Signal\SignalMACD.mqh" />
+    <None Include="Expert\Signal\SignalRSI.mqh" />
+    <None Include="Expert\Signal\SignalRVI.mqh" />
+    <None Include="Expert\Signal\SignalSAR.mqh" />
+    <None Include="Expert\Signal\SignalStoch.mqh" />
+    <None Include="Expert\Signal\SignalTEMA.mqh" />
+    <None Include="Expert\Signal\SignalTRIX.mqh" />
+    <None Include="Expert\Signal\SignalWPR.mqh" />
+    <None Include="Expert\Trailing\TrailingFixedPips.mqh" />
+    <None Include="Expert\Trailing\TrailingMA.mqh" />
+    <None Include="Expert\Trailing\TrailingNone.mqh" />
+    <None Include="Expert\Trailing\TrailingParabolicSAR.mqh" />
+    <None Include="Files\File.mqh" />
+    <None Include="Files\FileBin.mqh" />
+    <None Include="Files\FilePipe.mqh" />
+    <None Include="Files\FileTxt.mqh" />
+    <None Include="Indicators\BillWilliams.mqh" />
+    <None Include="Indicators\Custom.mqh" />
+    <None Include="Indicators\Indicator.mqh" />
+    <None Include="Indicators\Indicators.mqh" />
+    <None Include="Indicators\Oscilators.mqh" />
+    <None Include="Indicators\Series.mqh" />
+    <None Include="Indicators\TimeSeries.mqh" />
+    <None Include="Indicators\Trend.mqh" />
+    <None Include="Indicators\Volumes.mqh" />
+    <None Include="Object.mqh" />
+    <None Include="stdlib.mqh" />
+    <None Include="StdLibErr.mqh" />
+    <None Include="Strings\String.mqh" />
+    <None Include="Tools\DateTime.mqh" />
+    <None Include="Trade\AccountInfo.mqh" />
+    <None Include="Trade\DealInfo.mqh" />
+    <None Include="Trade\HistoryOrderInfo.mqh" />
+    <None Include="Trade\OrderInfo.mqh" />
+    <None Include="Trade\PositionInfo.mqh" />
+    <None Include="Trade\SymbolInfo.mqh" />
+    <None Include="Trade\TerminalInfo.mqh" />
+    <None Include="Trade\Trade.mqh" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="puzzle.txt" />
+    <Text Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Controls\res\CheckBoxOff.bmp" />
+    <Image Include="Controls\res\CheckBoxOn.bmp" />
+    <Image Include="Controls\res\Close.bmp" />
+    <Image Include="Controls\res\CloseDisable.bmp" />
+    <Image Include="Controls\res\CloseOff.bmp" />
+    <Image Include="Controls\res\CloseOn.bmp" />
+    <Image Include="Controls\res\DateDropOff.bmp" />
+    <Image Include="Controls\res\DateDropOn.bmp" />
+    <Image Include="Controls\res\Down.bmp" />
+    <Image Include="Controls\res\DownDisable.bmp" />
+    <Image Include="Controls\res\DownSmall.bmp" />
+    <Image Include="Controls\res\DownTransp.bmp" />
+    <Image Include="Controls\res\down_smoll.bmp" />
+    <Image Include="Controls\res\DropOff.bmp" />
+    <Image Include="Controls\res\DropOn.bmp" />
+    <Image Include="Controls\res\ExpandDisable.bmp" />
+    <Image Include="Controls\res\ExpandOff.bmp" />
+    <Image Include="Controls\res\ExpandOn.bmp" />
+    <Image Include="Controls\res\HelpDisable.bmp" />
+    <Image Include="Controls\res\HelpOff.bmp" />
+    <Image Include="Controls\res\HelpOn.bmp" />
+    <Image Include="Controls\res\Left.bmp" />
+    <Image Include="Controls\res\LeftDisable.bmp" />
+    <Image Include="Controls\res\LeftTransp.bmp" />
+    <Image Include="Controls\res\RadioButtonOff.bmp" />
+    <Image Include="Controls\res\RadioButtonOn.bmp" />
+    <Image Include="Controls\res\Restore.bmp" />
+    <Image Include="Controls\res\RestoreDisable.bmp" />
+    <Image Include="Controls\res\RestoreOff.bmp" />
+    <Image Include="Controls\res\RestoreOn.bmp" />
+    <Image Include="Controls\res\Right.bmp" />
+    <Image Include="Controls\res\RightDisable.bmp" />
+    <Image Include="Controls\res\RightTransp.bmp" />
+    <Image Include="Controls\res\SpinDec.bmp" />
+    <Image Include="Controls\res\SpinInc.bmp" />
+    <Image Include="Controls\res\ThumbHor.bmp" />
+    <Image Include="Controls\res\ThumbHorDisable.bmp" />
+    <Image Include="Controls\res\ThumbVert.bmp" />
+    <Image Include="Controls\res\ThumbVertDisable.bmp" />
+    <Image Include="Controls\res\Turn.bmp" />
+    <Image Include="Controls\res\TurnOff.bmp" />
+    <Image Include="Controls\res\TurnOn.bmp" />
+    <Image Include="Controls\res\Up.bmp" />
+    <Image Include="Controls\res\UpDisable.bmp" />
+    <Image Include="Controls\res\UpSmall.bmp" />
+    <Image Include="Controls\res\UpTransp.bmp" />
+    <Image Include="Controls\res\up_smoll.bmp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
