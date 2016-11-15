@@ -13,17 +13,53 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\Arrays">
+      <UniqueIdentifier>{99942a88-ab11-4856-abc1-d40376fd8cdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Canvas">
+      <UniqueIdentifier>{7031d8f8-638c-46b2-abc1-301149e52324}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ChartObjects">
+      <UniqueIdentifier>{197b1e2c-5dcb-48ff-8159-491d87d4103f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Charts">
+      <UniqueIdentifier>{b2c8697f-0dc9-4057-a2cd-b229e1d8325f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Controls">
+      <UniqueIdentifier>{0db16435-f3ac-43c8-b127-8523d7f101cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Expert">
+      <UniqueIdentifier>{77a9111a-2b78-4b57-bf78-18c8dd3fa4e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Files">
+      <UniqueIdentifier>{9e48ab72-bc56-4de5-b95c-123b3dfdd177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Framework">
+      <UniqueIdentifier>{fb2ef63d-96e1-42ae-8e57-015aa406ae94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Indicators">
+      <UniqueIdentifier>{acb6ee10-7112-42e5-a065-1d71610b2e8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Strings">
+      <UniqueIdentifier>{ccd3d4c6-221c-4e7b-a26c-71ac6be6fcac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Tools">
+      <UniqueIdentifier>{085ef86a-8846-43f8-a56f-3dec69f76273}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Trade">
+      <UniqueIdentifier>{25587950-e33d-47b1-9a69-e0cdd1ae68dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Expert\Money">
+      <UniqueIdentifier>{5661fb01-0450-4f0b-bb53-e8def4c036fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Expert\Signal">
+      <UniqueIdentifier>{efdbdbbf-0922-446b-be42-260a9ec0e946}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Expert\Trading">
+      <UniqueIdentifier>{14319084-248d-4dd9-b0c6-666ac81867e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Framework\color.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Order.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\standardCPPLibrary.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="AccountInfo.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -99,131 +135,345 @@
     <ClInclude Include="TradeSignals.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Trading.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="WindowInfo.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="WinUser32.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\standardCPPLibrary.h">
+      <Filter>头文件\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\color.h">
+      <Filter>头文件\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Trade.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Arrays\Array.mqh">
+      <Filter>头文件\Arrays</Filter>
+    </None>
+    <None Include="Arrays\ArrayChar.mqh">
+      <Filter>头文件\Arrays</Filter>
+    </None>
+    <None Include="Arrays\ArrayDouble.mqh">
+      <Filter>头文件\Arrays</Filter>
+    </None>
+    <None Include="Arrays\ArrayFloat.mqh">
+      <Filter>头文件\Arrays</Filter>
+    </None>
+    <None Include="Arrays\ArrayInt.mqh">
+      <Filter>头文件\Arrays</Filter>
+    </None>
+    <None Include="Arrays\ArrayLong.mqh">
+      <Filter>头文件\Arrays</Filter>
+    </None>
+    <None Include="Arrays\ArrayObj.mqh">
+      <Filter>头文件\Arrays</Filter>
+    </None>
+    <None Include="Arrays\ArrayShort.mqh">
+      <Filter>头文件\Arrays</Filter>
+    </None>
+    <None Include="Arrays\ArrayString.mqh">
+      <Filter>头文件\Arrays</Filter>
+    </None>
+    <None Include="Arrays\List.mqh">
+      <Filter>头文件\Arrays</Filter>
+    </None>
+    <None Include="Arrays\Tree.mqh">
+      <Filter>头文件\Arrays</Filter>
+    </None>
+    <None Include="Arrays\TreeNode.mqh">
+      <Filter>头文件\Arrays</Filter>
+    </None>
+    <None Include="Canvas\Canvas.mqh">
+      <Filter>头文件\Canvas</Filter>
+    </None>
+    <None Include="ChartObjects\ChartObject.mqh">
+      <Filter>头文件\ChartObjects</Filter>
+    </None>
+    <None Include="ChartObjects\ChartObjectPanel.mqh">
+      <Filter>头文件\ChartObjects</Filter>
+    </None>
+    <None Include="ChartObjects\ChartObjectsArrows.mqh">
+      <Filter>头文件\ChartObjects</Filter>
+    </None>
+    <None Include="ChartObjects\ChartObjectsBmpControls.mqh">
+      <Filter>头文件\ChartObjects</Filter>
+    </None>
+    <None Include="ChartObjects\ChartObjectsChannels.mqh">
+      <Filter>头文件\ChartObjects</Filter>
+    </None>
+    <None Include="ChartObjects\ChartObjectsFibo.mqh">
+      <Filter>头文件\ChartObjects</Filter>
+    </None>
+    <None Include="ChartObjects\ChartObjectsGann.mqh">
+      <Filter>头文件\ChartObjects</Filter>
+    </None>
+    <None Include="ChartObjects\ChartObjectsLines.mqh">
+      <Filter>头文件\ChartObjects</Filter>
+    </None>
+    <None Include="ChartObjects\ChartObjectsShapes.mqh">
+      <Filter>头文件\ChartObjects</Filter>
+    </None>
+    <None Include="ChartObjects\ChartObjectsTxtControls.mqh">
+      <Filter>头文件\ChartObjects</Filter>
+    </None>
+    <None Include="Charts\Chart.mqh">
+      <Filter>头文件\Charts</Filter>
+    </None>
+    <None Include="Controls\BmpButton.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\Button.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\CheckBox.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\CheckGroup.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\ComboBox.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\DateDropList.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\DatePicker.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\Defines.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\Dialog.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\Edit.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\Label.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\ListView.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\Panel.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\Picture.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\RadioButton.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\RadioGroup.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\Rect.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\Scrolls.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\SpinEdit.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\TimePicker.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\Wnd.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\WndClient.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\WndContainer.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Controls\WndObj.mqh">
+      <Filter>头文件\Controls</Filter>
+    </None>
+    <None Include="Expert\Money\MoneySizeOptimized.mqh">
+      <Filter>头文件\Expert\Money</Filter>
+    </None>
+    <None Include="Expert\Money\MoneyFixedLot.mqh">
+      <Filter>头文件\Expert\Money</Filter>
+    </None>
+    <None Include="Expert\Money\MoneyFixedMargin.mqh">
+      <Filter>头文件\Expert\Money</Filter>
+    </None>
+    <None Include="Expert\Money\MoneyFixedRisk.mqh">
+      <Filter>头文件\Expert\Money</Filter>
+    </None>
+    <None Include="Expert\Money\MoneyNone.mqh">
+      <Filter>头文件\Expert\Money</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalAC.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalAMA.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalAO.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalBearsPower.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalBullsPower.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalCCI.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalDEMA.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalDeMarker.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalEnvelopes.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalFrAMA.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalITF.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalMA.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalMACD.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalRSI.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalRVI.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalSAR.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalStoch.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalTEMA.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalTRIX.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Signal\SignalWPR.mqh">
+      <Filter>头文件\Expert\Signal</Filter>
+    </None>
+    <None Include="Expert\Trailing\TrailingFixedPips.mqh">
+      <Filter>头文件\Expert\Trading</Filter>
+    </None>
+    <None Include="Expert\Trailing\TrailingMA.mqh">
+      <Filter>头文件\Expert\Trading</Filter>
+    </None>
+    <None Include="Expert\Trailing\TrailingNone.mqh">
+      <Filter>头文件\Expert\Trading</Filter>
+    </None>
+    <None Include="Expert\Trailing\TrailingParabolicSAR.mqh">
+      <Filter>头文件\Expert\Trading</Filter>
+    </None>
+    <None Include="Expert\Expert.mqh">
+      <Filter>头文件\Expert</Filter>
+    </None>
+    <None Include="Expert\ExpertBase.mqh">
+      <Filter>头文件\Expert</Filter>
+    </None>
+    <None Include="Expert\ExpertMoney.mqh">
+      <Filter>头文件\Expert</Filter>
+    </None>
+    <None Include="Expert\ExpertSignal.mqh">
+      <Filter>头文件\Expert</Filter>
+    </None>
+    <None Include="Expert\ExpertTrade.mqh">
+      <Filter>头文件\Expert</Filter>
+    </None>
+    <None Include="Expert\ExpertTrailing.mqh">
+      <Filter>头文件\Expert</Filter>
+    </None>
+    <None Include="Files\File.mqh">
+      <Filter>头文件\Files</Filter>
+    </None>
+    <None Include="Files\FileBin.mqh">
+      <Filter>头文件\Files</Filter>
+    </None>
+    <None Include="Files\FilePipe.mqh">
+      <Filter>头文件\Files</Filter>
+    </None>
+    <None Include="Files\FileTxt.mqh">
+      <Filter>头文件\Files</Filter>
+    </None>
+    <None Include="Indicators\BillWilliams.mqh">
+      <Filter>头文件\Indicators</Filter>
+    </None>
+    <None Include="Indicators\Custom.mqh">
+      <Filter>头文件\Indicators</Filter>
+    </None>
+    <None Include="Indicators\Indicator.mqh">
+      <Filter>头文件\Indicators</Filter>
+    </None>
+    <None Include="Indicators\Indicators.mqh">
+      <Filter>头文件\Indicators</Filter>
+    </None>
+    <None Include="Indicators\Oscilators.mqh">
+      <Filter>头文件\Indicators</Filter>
+    </None>
+    <None Include="Indicators\Series.mqh">
+      <Filter>头文件\Indicators</Filter>
+    </None>
+    <None Include="Indicators\TimeSeries.mqh">
+      <Filter>头文件\Indicators</Filter>
+    </None>
+    <None Include="Indicators\Trend.mqh">
+      <Filter>头文件\Indicators</Filter>
+    </None>
+    <None Include="Indicators\Volumes.mqh">
+      <Filter>头文件\Indicators</Filter>
+    </None>
+    <None Include="Tools\DateTime.mqh">
+      <Filter>头文件\Tools</Filter>
+    </None>
+    <None Include="Strings\String.mqh">
+      <Filter>头文件\Strings</Filter>
+    </None>
+    <None Include="Trade\AccountInfo.mqh">
+      <Filter>头文件\Trade</Filter>
+    </None>
+    <None Include="Trade\DealInfo.mqh">
+      <Filter>头文件\Trade</Filter>
+    </None>
+    <None Include="Trade\HistoryOrderInfo.mqh">
+      <Filter>头文件\Trade</Filter>
+    </None>
+    <None Include="Trade\OrderInfo.mqh">
+      <Filter>头文件\Trade</Filter>
+    </None>
+    <None Include="Trade\PositionInfo.mqh">
+      <Filter>头文件\Trade</Filter>
+    </None>
+    <None Include="Trade\SymbolInfo.mqh">
+      <Filter>头文件\Trade</Filter>
+    </None>
+    <None Include="Trade\TerminalInfo.mqh">
+      <Filter>头文件\Trade</Filter>
+    </None>
+    <None Include="Trade\Trade.mqh">
+      <Filter>头文件\Trade</Filter>
+    </None>
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
-    <None Include="Object.mqh" />
-    <None Include="stdlib.mqh" />
-    <None Include="StdLibErr.mqh" />
-    <None Include="Arrays\Array.mqh" />
-    <None Include="Arrays\ArrayChar.mqh" />
-    <None Include="Arrays\ArrayDouble.mqh" />
-    <None Include="Arrays\ArrayFloat.mqh" />
-    <None Include="Arrays\ArrayInt.mqh" />
-    <None Include="Arrays\ArrayLong.mqh" />
-    <None Include="Arrays\ArrayObj.mqh" />
-    <None Include="Arrays\ArrayShort.mqh" />
-    <None Include="Arrays\ArrayString.mqh" />
-    <None Include="Arrays\List.mqh" />
-    <None Include="Arrays\Tree.mqh" />
-    <None Include="Arrays\TreeNode.mqh" />
-    <None Include="Canvas\Canvas.mqh" />
-    <None Include="Charts\Chart.mqh" />
-    <None Include="ChartObjects\ChartObject.mqh" />
-    <None Include="ChartObjects\ChartObjectPanel.mqh" />
-    <None Include="ChartObjects\ChartObjectsArrows.mqh" />
-    <None Include="ChartObjects\ChartObjectsBmpControls.mqh" />
-    <None Include="ChartObjects\ChartObjectsChannels.mqh" />
-    <None Include="ChartObjects\ChartObjectsFibo.mqh" />
-    <None Include="ChartObjects\ChartObjectsGann.mqh" />
-    <None Include="ChartObjects\ChartObjectsLines.mqh" />
-    <None Include="ChartObjects\ChartObjectsShapes.mqh" />
-    <None Include="ChartObjects\ChartObjectsTxtControls.mqh" />
-    <None Include="Controls\BmpButton.mqh" />
-    <None Include="Controls\Button.mqh" />
-    <None Include="Controls\CheckBox.mqh" />
-    <None Include="Controls\CheckGroup.mqh" />
-    <None Include="Controls\ComboBox.mqh" />
-    <None Include="Controls\DateDropList.mqh" />
-    <None Include="Controls\DatePicker.mqh" />
-    <None Include="Controls\Defines.mqh" />
-    <None Include="Controls\Dialog.mqh" />
-    <None Include="Controls\Edit.mqh" />
-    <None Include="Controls\Label.mqh" />
-    <None Include="Controls\ListView.mqh" />
-    <None Include="Controls\Panel.mqh" />
-    <None Include="Controls\Picture.mqh" />
-    <None Include="Controls\RadioButton.mqh" />
-    <None Include="Controls\RadioGroup.mqh" />
-    <None Include="Controls\Rect.mqh" />
-    <None Include="Controls\Scrolls.mqh" />
-    <None Include="Controls\SpinEdit.mqh" />
-    <None Include="Controls\TimePicker.mqh" />
-    <None Include="Controls\Wnd.mqh" />
-    <None Include="Controls\WndClient.mqh" />
-    <None Include="Controls\WndContainer.mqh" />
-    <None Include="Controls\WndObj.mqh" />
-    <None Include="Files\File.mqh" />
-    <None Include="Files\FileBin.mqh" />
-    <None Include="Files\FilePipe.mqh" />
-    <None Include="Files\FileTxt.mqh" />
-    <None Include="Indicators\BillWilliams.mqh" />
-    <None Include="Indicators\Custom.mqh" />
-    <None Include="Indicators\Indicator.mqh" />
-    <None Include="Indicators\Indicators.mqh" />
-    <None Include="Indicators\Oscilators.mqh" />
-    <None Include="Indicators\Series.mqh" />
-    <None Include="Indicators\TimeSeries.mqh" />
-    <None Include="Indicators\Trend.mqh" />
-    <None Include="Indicators\Volumes.mqh" />
-    <None Include="Strings\String.mqh" />
-    <None Include="Expert\Signal\SignalAC.mqh" />
-    <None Include="Expert\Signal\SignalAMA.mqh" />
-    <None Include="Expert\Signal\SignalAO.mqh" />
-    <None Include="Expert\Signal\SignalBearsPower.mqh" />
-    <None Include="Expert\Signal\SignalBullsPower.mqh" />
-    <None Include="Expert\Signal\SignalCCI.mqh" />
-    <None Include="Expert\Signal\SignalDEMA.mqh" />
-    <None Include="Expert\Signal\SignalDeMarker.mqh" />
-    <None Include="Expert\Signal\SignalEnvelopes.mqh" />
-    <None Include="Expert\Signal\SignalFrAMA.mqh" />
-    <None Include="Expert\Signal\SignalITF.mqh" />
-    <None Include="Expert\Signal\SignalMA.mqh" />
-    <None Include="Expert\Signal\SignalMACD.mqh" />
-    <None Include="Expert\Signal\SignalRSI.mqh" />
-    <None Include="Expert\Signal\SignalRVI.mqh" />
-    <None Include="Expert\Signal\SignalSAR.mqh" />
-    <None Include="Expert\Signal\SignalStoch.mqh" />
-    <None Include="Expert\Signal\SignalTEMA.mqh" />
-    <None Include="Expert\Signal\SignalTRIX.mqh" />
-    <None Include="Expert\Signal\SignalWPR.mqh" />
-    <None Include="Expert\Money\MoneyFixedLot.mqh" />
-    <None Include="Expert\Money\MoneyFixedMargin.mqh" />
-    <None Include="Expert\Money\MoneyFixedRisk.mqh" />
-    <None Include="Expert\Money\MoneyNone.mqh" />
-    <None Include="Expert\Money\MoneySizeOptimized.mqh" />
-    <None Include="Expert\Expert.mqh" />
-    <None Include="Expert\ExpertBase.mqh" />
-    <None Include="Expert\ExpertMoney.mqh" />
-    <None Include="Expert\ExpertSignal.mqh" />
-    <None Include="Expert\ExpertTrade.mqh" />
-    <None Include="Expert\ExpertTrailing.mqh" />
-    <None Include="Expert\Trailing\TrailingFixedPips.mqh" />
-    <None Include="Expert\Trailing\TrailingMA.mqh" />
-    <None Include="Expert\Trailing\TrailingNone.mqh" />
-    <None Include="Expert\Trailing\TrailingParabolicSAR.mqh" />
-    <None Include="Tools\DateTime.mqh" />
-    <None Include="Trade\AccountInfo.mqh" />
-    <None Include="Trade\DealInfo.mqh" />
-    <None Include="Trade\HistoryOrderInfo.mqh" />
-    <None Include="Trade\OrderInfo.mqh" />
-    <None Include="Trade\PositionInfo.mqh" />
-    <None Include="Trade\SymbolInfo.mqh" />
-    <None Include="Trade\TerminalInfo.mqh" />
-    <None Include="Trade\Trade.mqh" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="puzzle.txt" />
     <Text Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>

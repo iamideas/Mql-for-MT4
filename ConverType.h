@@ -13,13 +13,17 @@
 #define TIME_SECONDS    0x00000F00
 
 string CharToStr(int char_code);
+string ChartToString(int char_code);
 string DoubleToStr(double value, int digits = 8);
+string DoubleToString(double value, int digits = 8);
 double NormalizeDouble(double value, int digits);
 double StrToDouble(string value);
+double StringToDouble(string value);
+int    StrToInteger(string value);
 int    StrToInteger(string value);
 datetime StrToTime(string value);
+datetime StringToTime(string value);
 string   TimeToStr(datetime value, int mode=TIME_DATE|TIME_MINUTES);
-
 //Converting a value containing time in seconds elapsed since 01.01.1970 into a string of "yyyy.mm.dd hh:mi" format.
 string  TimeToString(datetime  value, int mode = TIME_DATE | TIME_MINUTES);
 
@@ -82,8 +86,7 @@ string  ColorToString(
 );
 
 //Converting an enumeration value of any type to a text form.
-template<typename ENUM_TYPE>
-string  EnumToString(
+template<typename ENUM_TYPE> string  EnumToString(
   ENUM_TYPE value      // any type enumeration value
 );
 

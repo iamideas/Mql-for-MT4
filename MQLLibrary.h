@@ -30,9 +30,12 @@
 #include"string.h"
 #include"Terminal.h"
 #include"Time.h"
-#include"Trading.h"
+#include"TradeSignals.h"
+#include"Trade.h"
 #include"WindowInfo.h"
 #include"WinUser32.h"
+
+//#include "main.h"
 
 
 #endif

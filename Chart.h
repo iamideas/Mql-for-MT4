@@ -4,6 +4,8 @@
 #include "Framework\standardCPPLibrary.h"
 #include "DataType.h"
 
+//Others see the WindowInfo.h
+
 /*
 	Applies a specific template from a specified file to the chart.The command is added to chart
 messages queue and will be executed after processing of all previous commands.

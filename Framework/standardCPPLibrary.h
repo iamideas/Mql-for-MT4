@@ -50,40 +50,6 @@ private:
 	//privatge classes 、functions
 	struct tm format(string rhs){
 		struct tm time = { 0 };
-		int previous, current;
-
-		if ("" == rhs)
-			timer = 0;
-
-		//日期
-		if (string::npos != rhs.find(".")){
-			current = rhs.find('.');
-			time.tm_mon = atoi(rhs.substr(0, current).c_str());
-			previous = current;
-
-			current = rhs.find('.', previous);
-			time.tm_mday = atoi(rhs.substr(previous, current).c_str());
-			previous = current;
-
-			current = rhs.find(' ', previous);
-			time.tm_year = atoi(rhs.substr(previous, current).c_str());
-			previous = current;
-		}
-		//时间
-		if (string::npos == rhs.find('.')){
-			current = rhs.find(':');
-			time.tm_hour = atoi(rhs.substr(current - 2, current).c_str());
-
-			//minute
-			if (rhs.end == rhs.at(current + 2))
-				time.tm_min = atoi(rhs.substr(current, current + 2).c_str());
-			//second
-			previous = current;
-			current = rhs.find_last_of(":");
-			if (string::npos != current && previous != current)
-				time.tm_sec = atoi(rhs.substr(current, current + 2).c_str());
-
-		}
 		return time;
 	}
 
@@ -92,14 +58,21 @@ private:
 };
 
 
-datetime operator+(datetime &lhs, int rhs){
-	return lhs.getTime() + rhs;
-}
 datetime operator+(datetime &lhs, datetime &rhs){
 	return lhs.getTime() + rhs.getTime();
 }
 datetime operator-(datetime &lhs, datetime &rhs){
 	return lhs.getTime() - rhs.getTime();
+}
+bool operator>( datetime &lhs, datetime &rhs ) { 
+}
+bool operator<( datetime &lhs, datetime &rhs ) {
+}
+bool operator!=( datetime &lhs, datetime &rhs ) { 
+}
+
+datetime operator+(datetime &lhs, int rhs){
+	return lhs.getTime() + rhs;
 }
 datetime operator-(datetime &lhs, int rhs){
 	return lhs.getTime() - rhs;

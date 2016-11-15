@@ -28,7 +28,9 @@ bool  ObjectDelete(
 	string  name          // object name
 );
 string ObjectDescription(string name);
+//If successful the function returns the number of the subwindow (0 means the main window of the chart)
 int ObjectFind(string name);
+//If successful the function returns the number of the subwindow (0 means the main window of the chart)
 int  ObjectFind(
 	long    chart_id,     // chart identifier
 	string  name          // object name
@@ -37,7 +39,16 @@ double ObjectGet(string name, int index);
 string ObjectGetFiboDescription(string name, int index);
 int ObjectGetShiftByValue(string name, double value);
 double ObjectGetValueByShift(string name, int shift);
+//point -> 0
 bool ObjectMove(string name, int point, datetime time1, double price1);
+//The function changes coordinates of the specified anchor point of the object.
+bool  ObjectMove(
+	long      chart_id,        // chart identifier
+	string    name,            // object name
+	int       point_index,     // anchor point number 
+	datetime  time,            // Time
+	double    price            // Price
+	);
 string ObjectName(int index);
 string  ObjectName(
 	long  chart_id,           // chart identifier
@@ -70,21 +81,8 @@ datetime  ObjectGetTimeByValue(
 	int     line_id       // Line number
 );
 
-//The function changes coordinates of the specified anchor point of the object.
-bool  ObjectMove(
-	long      chart_id,        // chart identifier
-	string    name,            // object name
-	int       point_index,     // anchor point number
-	datetime  time,            // Time
-	double    price            // Price
-);
 
-//The function returns the number of objects in the specified chart, specified subwindow, of the specified type.
-int  ObjectsTotal(
-	long  chart_id,           // chart identifier
-	int   sub_window = -1,      // window index
-	int   type = -1             // object type
-);
+
 
 /*
 	The function sets the value of the corresponding object property.The object property must be of the 

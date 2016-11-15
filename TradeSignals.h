@@ -1,5 +1,8 @@
+//asdf
 #ifndef TRADESIGNALS_H_
 #define TRADESIGNALS_H_
+
+#include"Framework/StandardCPPLibrary.h"
 #include"DataType.h"
 
 //Returns the value of double type property for selected signal.
@@ -30,18 +33,18 @@ string  SignalInfoGetString(ENUM_SIGNAL_INFO_STRING     property_id);
 bool  SignalInfoSetDouble(
 	ENUM_SIGNAL_INFO_DOUBLE      property_id,     // property identifier
 	double                       value            // new value
-);
+	);
 
 //Sets the value of integer type property of signal copy settings.
 bool  SignalInfoSetInteger(
 	ENUM_SIGNAL_INFO_INTEGER     property_id,     // property identifier
 	long                         value            // new value
-);
+	);
 
 //Subscribes to the trading signal.
 bool  SignalSubscribe(
 	long     signal_id     // signal id 
-);
+	);
 
 //Cancels subscription.
 bool  SignalUnsubscribe();

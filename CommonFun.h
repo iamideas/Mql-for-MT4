@@ -10,7 +10,8 @@
 #include"Object.mqh"
 template< typename type > void Alert(type para, ...);
 template< typename type > void Print(type para, ...);
-template< typename type > void comment(type para, ...);
+void Print(string para);
+template< typename type > void Comment(type para, ...);
 
 double MarketInfo(string symbol, int type);
 void PlaySound(string filename);

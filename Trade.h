@@ -12,30 +12,42 @@
 #define MODE_TRADES  1
 #define MODE_HISTORY 2
 #define SELECT_BY_POS 1
-
+#define SELECT_BY_TICKET 2
+//Returns true if successful, otherwise false. To get additional error information, one has to call the GetLastError() function.
 bool OrderClose(int ticket, double lots, double price, int slippage, color Color=CLR_NONE);
 bool OrderCloseBy(int ticket, int opposite, color Color=CLR_NONE);
 double OrderClosePrice();
 datetime OrderCloseTime();
 string OrderComment();
 double OrderCommission();
-double OrderCommission();
+//If the function succeeds, it returns true, otherwise false. To get the detailed error information, call the GetLastError() function.
+bool  OrderDelete(int ticket, color arrow_color	);
 datetime OrderExpiration();
 double OrderLots();
 int OrderMagicNumber();
+/*
+ Parms:
+ double price: use in pending order, if the order is Opened, please set to 0
+ Return:
+ If the function succeeds, it returns true, otherwise false.To get the detailed error information, call the GetLastError() function.
+*/
 bool OrderModify(int ticket, double price, double stoploss, double takeprofit, datetime expiration, 
 	             color arrow_color=CLR_NONE);
 double OrderOpenPrice();
 datetime OrderOpenTime();
 void OrderPrint();
 double OrderProfit();
+//It returns true if the function succeeds, otherwise falses. To get the error information, one has to call the GetLastError() function.
 bool OrderSelect(int index, int select, int pool=MODE_TRADES);
+//Returns number of the ticket assigned to the order by the trade server or - 1 if it fails.To get additional error information, one has to call the GetLastError() function.
 int OrderSend(string symbol, int cmd, double volume, double price, int slippage, double stoploss, 
               double takeprofit, string comment=NULL, int magic=0, datetime expiration=0, 
 			  color arrow_color=CLR_NONE);
+//The number of closed orders in the account history loaded into the terminal.The history list size depends on the current settings of the "Account history" tab of the terminal.
 int OrdersHistoryTotal();
-double OrderStopLoss();
+//Total amount of market and pending orders.
 int OrdersTotal();
+double OrderStopLoss();
 double OrderSwap();
 string OrderSymbol();
 double OrderTakeProfit();

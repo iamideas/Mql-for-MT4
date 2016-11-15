@@ -50,15 +50,10 @@ void FileFlush(int handle);
  *  (4099).
  */
 bool FileIsEnding(int handle);
-
 bool FileIsLineEnding(int handle);
-
 int FileOpen(string filename, int mode, int delimiter=';');
-
 int FileOpenHistory(string filename, int mode, int delimiter=';');
-
-template<typename N>
-int FileReadArray(int handle, N array[], int start, int count);
+template<typename N> int FileReadArray(int handle, N array[], int start, int count);
 
 //size DOUBLE_VALUE or FLOAT_VALUE
 int FIleReadDouble(int handle, int size=DOUBLE_VALUE);
@@ -71,24 +66,14 @@ int FileReadInteger(int handle, int size=LONG_VALUE);
 
 //Read the number for the current file position before the delimiter, only for csv files.
 double FileReadNumber(int handle);
-
 string FileReadstring(int handle, int length=0);
-
 bool FileSeek(int handle, int offset, int origin);
-
 int FileSize(int handle);
-
 int FileTell(int handle);
-
 int FileWrite(int handle, ...);
-
-template<typename N>
-int FileWriteArray(int handle, N array[], int start, int count=WHOLE_ARRAY);
-
+template<typename N> int FileWriteArray(int handle, N array[], int start, int count=WHOLE_ARRAY);
 int FileWriteDouble(int handle, double value, int size=DOUBLE_VALUE);
-
 int FileWriteInteger(int handle, int value, int size=LONG_VALUE);
-
 int FileWriteString(int handle, string value, int length=-1);
 
 //The function starts the search of files or subdirectories in a directory in accordance with the specified filter.
@@ -177,8 +162,7 @@ bool  FileIsLineEnding(int  file_handle);
 	Reads from a file of BIN type arrays of any type except string(may be an array of structures, not 
 containing strings, and dynamic arrays).
 */
-template<typename TYPE>
-uint  FileReadArray(
+template<typename TYPE> uint  FileReadArray(
 	int    file_handle,               // File handle
 	TYPE   array[],                   // Array to record
 	int    start = 0,                   // start array position to write
@@ -231,8 +215,7 @@ string  FileReadString(
 	The function reads contents into a structure passed as a parameter from a binary - file, 
 starting with the current position of the file pointer.
 */
-template<typename TYPE>
-uint  FileReadStruct(
+template<typename TYPE> uint  FileReadStruct(
 	int          file_handle,        // file handle
 	const TYPE   struct_object,      // target structure to which the contents are read
 	int          size = -1             // structure size in bytes

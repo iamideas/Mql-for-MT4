@@ -105,7 +105,7 @@ int  iChaikin(
 	ENUM_MA_METHOD       ma_method,          // smoothing type
 	ENUM_APPLIED_VOLUME  applied_volume      // type of volume
 	);
-template< typename type > double iCustom(type para, ...);
+
 int  iCustom(
 	string           symbol,     // symbol name
 	ENUM_TIMEFRAMES  period,     // period
@@ -210,7 +210,8 @@ int  iMA(
 	int                  ma_period,         // averaging period
 	int                  ma_shift,          // horizontal shift
 	ENUM_MA_METHOD       ma_method,         // smoothing type
-	ENUM_APPLIED_PRICE   applied_price      // type of price or handle
+	ENUM_APPLIED_PRICE   applied_price,      // type of price or handle
+	int shift
 	);
 double iMAOnArray(double array[], int total, int period, int ma_shift, int ma_method, int shift);
 double iOsMA(string symbol, int timeframe, int fast_ema_period, int slow_ema_period, int signal_period,
@@ -282,6 +283,11 @@ int  iStochastic(
 	ENUM_STO_PRICE   price_field      // stochastic calculation method
 	);
 double iWPR(string symbol, int timeframe, int period, int shift);
+int  iWPR(
+	string           symbol,          // symbol name
+	ENUM_TIMEFRAMES  period,          // period
+	int              calc_period      // averaging period
+	);
 int  iTEMA(
 	string              symbol,            // symbol name
 	ENUM_TIMEFRAMES     period,            // period
@@ -294,11 +300,6 @@ int  iTriX(
 	ENUM_TIMEFRAMES     period,            // period
 	int                 ma_period,         // averaging period
 	ENUM_APPLIED_PRICE  applied_price      // type of price or handle
-	);
-int  iWPR(
-	string           symbol,          // symbol name
-	ENUM_TIMEFRAMES  period,          // period
-	int              calc_period      // averaging period
 	);
 int  iVIDyA(
 	string              symbol,            // symbol name

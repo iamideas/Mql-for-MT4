@@ -16,10 +16,34 @@ typedef int		  stacksize;	//stack size
 #define _DEBUG
 #define _RELEASE
 
+#define input /*MT4 extern mode*/
+//#define PreVariable
+
+double	Ask = 0.0;
+double	Bid = 0.0;
+double	Open[1];
+double	Close[1];
+double	High[1];
+double	Low[1];
+double	Volume[1];
+datetime  Time[1];
+
+//-------MQL5
+int    _Digits;
+double _Point;
+int    _LastError;
+int    _Period;
+//_RandomSeed
+bool   _StopFlag;
+string _Symbol;
+int    _UninitReason;
+
 typedef unsigned long ulong;
 typedef unsigned int  uint;
 typedef unsigned char uchar;
 typedef unsigned short ushort;
+
+
 //********************************************
 //           Controlling compilation
 //res::http://docs.mql4.com/cn/basis/preprosessor/compilation
@@ -39,12 +63,12 @@ typedef int		indicator_levelstyle;	// level line style
 
 //res::http://www.mql5.com/en/docs/basis/preprosessor/compilation
 typedef int indicator_applied_price; //Specifies the default value for the "Apply to" field. You can specify one of the value of
-									//ENUM_APPLIED_PRICE. if the property is not specified, the default value is PRICE_CLOSE
+//ENUM_APPLIED_PRICE. if the property is not specified, the default value is PRICE_CLOSE
 typedef int indicator_height;		//Fixed height of the indicator subwindow in pixels(property INDICATOR_HEIGHT)
 typedef int indicator_plots;		// Number of graphic series in the indicator
-typedef string indicator_labelN;    //Sets a label for the N - th graphic series displayed in DataWindow.For graphic series 
-									//requiring multiple indicator buffers(DRAW_CANDLES, DRAW_FILLING and others), the tag names
-									//are defined by the separator ';'.
+typedef string indicator_labelN;    //Sets a label for the N - th graphic series displayed in DataWindow.For graphic series
+//requiring multiple indicator buffers(DRAW_CANDLES, DRAW_FILLING and others), the tag names
+//are defined by the separator ';'.
 typedef color indicator_colorN;		//The color for displaying line N, where N is the number of graphic series; numbering starts from 1
 typedef int	indicator_widthN;		//Line thickness in graphic series, where N - number of graphic series, numbering starts from 1
 typedef int indicator_styleN;		//Line style in graphic series, specified by the values of ENUM_LINE_STYLE.N - number of graphic series, numbering starts from 1
@@ -97,7 +121,7 @@ enum ENUM_TIMEFRAMES{
 };
 
 //********************************************
-//          
+//
 //res::
 //********************************************
 #define OP_BUY			0	// Buying position.
@@ -130,7 +154,6 @@ enum ENUM_STO_PRICE{
 	STO_CLOSECLOSE, //Calculation is based on Close/Close prices
 };
 
-
 #define MODE_LOW				1		// Low day price.
 #define MODE_HIGH				2		// High day price.
 #define MODE_TIME				5		// The last incoming tick time (last known server time).
@@ -138,7 +161,7 @@ enum ENUM_STO_PRICE{
 #define MODE_ASK				10		// Last incoming ask price. For the current symbol, it is stored in the predefined variable Ask
 #define MODE_POINT				11		// Point size in the quote currency. For the current symbol, it is stored in the predefined variable Point
 #define MODE_DIGITS				12		// Count of digits after decimal point in the symbol prices. For the current symbol, it is stored in the --
-										//predefined variable Digits
+//predefined variable Digits
 #define MODE_SPREAD				13		// Spread value in points.
 #define MODE_STOPLEVEL			14		// Stop level in points.
 #define MODE_LOTSIZE			15		// Lot size in the base currency.
@@ -160,7 +183,7 @@ enum ENUM_STO_PRICE{
 #define MODE_MARGINHEDGED		31		// Hedged margin calculated for 1 lot.
 #define MODE_MARGINREQUIRED		32		// Free margin required to open 1 lot for buying.
 #define MODE_FREEZELEVEL		33		// Order freeze level in points. If the execution price lies within the range defined by the freeze level, --
-										// the order cannot be modified, cancelled or closed.
+// the order cannot be modified, cancelled or closed.
 
 //*******************************************
 //          Drawing styles
@@ -169,7 +192,7 @@ enum ENUM_STO_PRICE{
 //Drawing shape style enumeration for SetIndexStyle() function.
 
 enum ENUM_DRAW_TYPE{
-//	ID					Description									Data buffers				Color buffers
+	//	ID					Description									Data buffers				Color buffers
 	DRAW_NONE,			//Not drawn									1							0
 	DRAW_LINE,			//Line										1							0
 	DRAW_SECTION,		//Section									1							0
@@ -193,23 +216,22 @@ enum ENUM_DRAW_TYPE{
 /*
 	To refine the display of the selected drawing type identifiers listed in ENUM_PLOT_PROPERTY are used.
 	For functions PlotIndexSetInteger() and PlotIndexGetInteger() with complex graphical styles requiring
-several indicator buffers for display, the namesfor each buffer can be specified using ";" as a separator. 
-Sample code is shown in DRAW_CANDLES (for PlotIndexSetString())
-*/
+	several indicator buffers for display, the namesfor each buffer can be specified using ";" as a separator.
+	Sample code is shown in DRAW_CANDLES (for PlotIndexSetString())
+	*/
 enum ENUM_PLOT_PROPERTY_INTEGER{
-	 PLOT_ARROW,		//int Arrow code for style DRAW_ARROW
-	 PLOT_ARROW_SHIFT, //int Vertical shift of arrows for style DRAW_ARROW
-	 PLOT_DRAW_BEGIN,  //int Number of initial bars without drawing and values in the DataWindow
-	 PLOT_DRAW_TYPE,	//ENUM_DRAW_TYPE Type of graphical construction					 
-	 PLOT_SHOW_DATA,	//bool Sign of display of construction values in the DataWindow
-	 PLOT_SHIFT,		//int Shift of indicator plotting along the time axis in bars
-	 PLOT_LINE_STYLE,	//ENUM_LINE_STYLE Drawing line style					  				 
-	 PLOT_LINE_WIDTH,  //int The thickness of the drawing line
-	 PLOT_COLOR_INDEXES, //int The number of colors
-	 PLOT_LINE_COLOR,	//color The index of a buffer containing the drawing color  modifier = index number of colors
-	 PLOT_EMPTY_VALUE,	//double An empty value for plotting, for which there is no drawing ( for PlotIndexSetDouble())
-	 PLOT_LABEL			//string The name of the indicator graphical series to display in the DataWindow. When working
-
+	PLOT_ARROW,		//int Arrow code for style DRAW_ARROW
+	PLOT_ARROW_SHIFT, //int Vertical shift of arrows for style DRAW_ARROW
+	PLOT_DRAW_BEGIN,  //int Number of initial bars without drawing and values in the DataWindow
+	PLOT_DRAW_TYPE,	//ENUM_DRAW_TYPE Type of graphical construction
+	PLOT_SHOW_DATA,	//bool Sign of display of construction values in the DataWindow
+	PLOT_SHIFT,		//int Shift of indicator plotting along the time axis in bars
+	PLOT_LINE_STYLE,	//ENUM_LINE_STYLE Drawing line style
+	PLOT_LINE_WIDTH,  //int The thickness of the drawing line
+	PLOT_COLOR_INDEXES, //int The number of colors
+	PLOT_LINE_COLOR,	//color The index of a buffer containing the drawing color  modifier = index number of colors
+	PLOT_EMPTY_VALUE,	//double An empty value for plotting, for which there is no drawing ( for PlotIndexSetDouble())
+	PLOT_LABEL			//string The name of the indicator graphical series to display in the DataWindow. When working
 };
 
 //Drawing style. Valid when width=1. It can be any of the following values:
@@ -269,21 +291,21 @@ enum ENUM_INDEXBUFFER_TYPE {
 };
 
 //	  A custom indicator has a lot of settings to provide convenient displaying.These settings are made
-//through the assignment of corresponding indicator properties using functions IndicatorSetDouble(), 
+//through the assignment of corresponding indicator properties using functions IndicatorSetDouble(),
 //IndicatorSetInteger() and IndicatorSetString().Identifiers of indicator properties are listed in the ENUM_CUSTOMIND_PROPERTY enumeration.
 enum ENUM_CUSTOMIND_PROPERTY_INTEGER{
 	INDICATOR_DIGITS, //int Accuracy of drawing of indicator values
 	INDICATOR_HEIGHT, //int Fixed height of the indicator's window (the preprocessor command #property indicator_height)
 	INDICATOR_LEVELS, //int Number of levels in the indicator window
 	INDICATOR_LEVELCOLOR, //color Color of the level line modifier = level number
-	INDICATOR_LEVELSTYLE,  //ENUM_LINE_STYLE Style of the level line 
+	INDICATOR_LEVELSTYLE,  //ENUM_LINE_STYLE Style of the level line
 	INDICATOR_LEVELWIDTH   //int Thickness of the level line  modifier = level number
 };
 
 enum ENUM_CUSTOMIND_PROPERTY_DOUBLE{
- INDICATOR_MINIMUM, //double Minimum of the indicator window
- INDICATOR_MAXIMUM, //double Maximum of the indicator window
- INDICATOR_LEVELVALUE //double Level value modifier = level number
+	INDICATOR_MINIMUM, //double Minimum of the indicator window
+	INDICATOR_MAXIMUM, //double Maximum of the indicator window
+	INDICATOR_LEVELVALUE //double Level value modifier = level number
 };
 
 enum ENUM_CUSTOMIND_PROPERTY_STRING{
@@ -291,7 +313,7 @@ enum ENUM_CUSTOMIND_PROPERTY_STRING{
 	INDICATOR_LEVELTEXT  //string Level description modifier = level number
 };
 enum ENUM_INDICATOR{
-	IND_AC, 
+	IND_AC,
 	IND_AD, //Accumulation  Distribution
 	IND_ADX, //	Average Directional Index
 	IND_ADXW, //ADX by Welles Wilder
@@ -349,63 +371,60 @@ enum ENUM_DATATYPE{
 	TYPE_STRING
 };
 
-
-
 //*******************************************
 //          Files mode
 //res::http://www.mql5.com/en/docs/constants/io_constants/fileflags
 //*******************************************
 /*
 	File is opened for reading.Flag is used in FileOpen().When opening a file specification of FILE_WRITE and / or
-FILE_READ is required.
-*/
-#define FILE_READ 1 
+	FILE_READ is required.
+	*/
+#define FILE_READ 1
 /*
 	File is opened for writing.Flag is used in FileOpen().When opening a file specification of FILE_WRITE and /
-or FILE_READ is required.
-*/
-#define FILE_WRITE 2 
+	or FILE_READ is required.
+	*/
+#define FILE_WRITE 2
 //Binary read  write mode(without string to string conversion).Flag is used in FileOpen()
-#define FILE_BIN 4 
+#define FILE_BIN 4
 /*
 	CSV file(all its elements are converted to strings of the appropriate type, unicode or ansi, and separated by
-separator).Flag is used in FileOpen()
-*/
-#define FILE_CSV 8 
+	separator).Flag is used in FileOpen()
+	*/
+#define FILE_CSV 8
 //Simple text file(the same as csv file, but without taking into account the separators).Flag is used in FileOpen()
 #define FILE_TXT 16
 //Strings of ANSI type(one byte symbols).Flag is used in FileOpen()
-#define FILE_ANSI 32 
+#define FILE_ANSI 32
 //Strings of UNICODE type(two byte symbols).Flag is used in FileOpen()
-#define FILE_UNICODE 64 
+#define FILE_UNICODE 64
 /*
-	Shared access for reading from several programs.Flag is used in FileOpen(), but it does not replace the necessity to 
-indicate FILE_WRITE and / or the FILE_READ flag when opening a file.
-*/
-#define FILE_SHARE_READ 128 
+	Shared access for reading from several programs.Flag is used in FileOpen(), but it does not replace the necessity to
+	indicate FILE_WRITE and / or the FILE_READ flag when opening a file.
+	*/
+#define FILE_SHARE_READ 128
 /*
 	Shared access for writing from several programs.Flag is used in FileOpen(), but it does not replace the necessity to
-indicate FILE_WRITE and / or the FILE_READ flag when opening a file.
-*/
-#define FILE_SHARE_WRITE 256 
+	indicate FILE_WRITE and / or the FILE_READ flag when opening a file.
+	*/
+#define FILE_SHARE_WRITE 256
 /*
-	Possibility for the file rewrite using functions FileCopy() and FileMove().The file should exist or should be opened for 
-writing, otherwise the file will not be opened.
-*/
-#define FILE_REWRITE 512 
+	Possibility for the file rewrite using functions FileCopy() and FileMove().The file should exist or should be opened for
+	writing, otherwise the file will not be opened.
+	*/
+#define FILE_REWRITE 512
 /*
-	The file path in the common folder of all client terminals \Terminal\Common\Files.Flag is used in FileOpen(), FileCopy(), 
-FileMove() and in FileIsExist() functions.
-*/
-#define FILE_COMMON 4096 
+	The file path in the common folder of all client terminals \Terminal\Common\Files.Flag is used in FileOpen(), FileCopy(),
+	FileMove() and in FileIsExist() functions.
+	*/
+#define FILE_COMMON 4096
 #define INVALID_HANDLE -1 //Incorrect handle
-
 
 //--------------File Properties
 /*
 	The FileGetInteger() function is used for obtaining file properties.The identifier of the required property from the
 	ENUM_FILE_PROPERTY_INTEGER enumeration is passed to it during call.
-*/
+	*/
 enum ENUM_FILE_PROPERTY_INTEGER{
 	FILE_EXISTS, //	Check the existence
 	FILE_CREATE_DATE, //Date of creation
@@ -429,7 +448,6 @@ enum ENUM_FILE_POSITION{
 	SEEK_CUR, //Current position of a file pointer
 	SEEK_END  //File end
 };
-
 
 //*******************************************
 //           Ichimoku Kinko Hyo
@@ -517,29 +535,29 @@ enum ENUM_OBJECT{
 
 enum ENUM_OBJECT_PROPERTY_INTEGER{
 	OBJPROP_COLOR,	//color
-	OBJPROP_STYLE,	//ENUM_LINE_STYLE  Style 
+	OBJPROP_STYLE,	//ENUM_LINE_STYLE  Style
 	OBJPROP_WIDTH,	//int   Line thickness
 	OBJPROP_BACK,	//bool Object in the background
 	/*
-		long Priority of a graphical object for receiving events of clicking on a chart(CHARTEVENT_CLICK).The
+	long Priority of a graphical object for receiving events of clicking on a chart(CHARTEVENT_CLICK).The
 	default zero value is set when creating an object; the priority can be increased if necessary.When
-	applying objects one over another, only one of them with the highest priority will receive the 
+	applying objects one over another, only one of them with the highest priority will receive the
 	CHARTEVENT_CLICK event.
 	*/
-	OBJPROP_ZORDER, 
+	OBJPROP_ZORDER,
 	/*
-		bool Fill an object with color(for OBJ_RECTANGLE, OBJ_TRIANGLE, OBJ_ELLIPSE, OBJ_CHANNEL, OBJ_STDDEVCHANNEL,
+	bool Fill an object with color(for OBJ_RECTANGLE, OBJ_TRIANGLE, OBJ_ELLIPSE, OBJ_CHANNEL, OBJ_STDDEVCHANNEL,
 	/OBJ_REGRESSION)
 	*/
 	OBJPROP_FILL,
 	/*
-		bool Prohibit showing of the name of a graphical object in the list of objects from the terminal menu 
-	"Charts" - "Objects" - "List of objects".The true value allows to hide an object from the list.By 
-	default, true is set to the objects that display calendar events, trading history and to the objects 
-	created from MQL5 programs.To see such graphical objects and access their properties, click on the 
+	bool Prohibit showing of the name of a graphical object in the list of objects from the terminal menu
+	"Charts" - "Objects" - "List of objects".The true value allows to hide an object from the list.By
+	default, true is set to the objects that display calendar events, trading history and to the objects
+	created from MQL5 programs.To see such graphical objects and access their properties, click on the
 	"All" button in the "List of objects" window.
 	*/
-	OBJPROP_HIDDEN, 
+	OBJPROP_HIDDEN,
 	OBJPROP_SELECTED,	//bool Object is selected
 	OBJPROP_READONLY,	//bool  Ability to edit text in the Edit object
 	OBJPROP_TYPE,		//ENUM_OBJECT Object type of    r / o
@@ -559,11 +577,11 @@ enum ENUM_OBJECT_PROPERTY_INTEGER{
 	OBJPROP_ARROWCODE,	//char Arrow code for the Arrow object
 	OBJPROP_TIMEFRAMES, //ENUM_TIMEFRAMES Visibility of an object at timeframes set of flags in Visibility of Ojbects (OBJ_PERIOD_ series)
 	/*
-		ENUM_ANCHOR_POINT Location of the anchor point of a graphical object
+	ENUM_ANCHOR_POINT Location of the anchor point of a graphical object
 	ENUM_ARROW_ANCHOR(for OBJ_ARROW),
 	(for OBJ_LABEL, OBJ_BITMAP_LABEL and OBJ_TEXT)
 	*/
-	OBJPROP_ANCHOR,	
+	OBJPROP_ANCHOR,
 	OBJPROP_XDISTANCE,	//int The distance in pixels along the X axis from the binding corner(see note)
 	OBJPROP_YDISTANCE,	//int The distance in pixels along the Y axis from the binding corner(see note)
 	OBJPROP_DIRECTION,	//ENUM_GANN_DIRECTION Trend of the Gann object
@@ -571,33 +589,33 @@ enum ENUM_OBJECT_PROPERTY_INTEGER{
 	OBJPROP_DRAWLINES,	//bool Displaying lines for marking the Elliott Wave
 	OBJPROP_STATE,		//bool Button state(pressed / depressed)
 	/*
-		long ID of the "Chart" object(OBJ_CHART).It allows working with the properties of this 
-	object like with a normal chart using the functions described in Chart Operations, 
+	long ID of the "Chart" object(OBJ_CHART).It allows working with the properties of this
+	object like with a normal chart using the functions described in Chart Operations,
 	but there some exceptions.
 	*/
 	OBJPROP_CHART_ID,
 	/*
-		int The object's width along the X axis in pixels. Specified for  OBJ_LABEL (read only),
+	int The object's width along the X axis in pixels. Specified for  OBJ_LABEL (read only),
 	OBJ_BUTTON, OBJ_CHART, OBJ_BITMAP, OBJ_BITMAP_LABEL, OBJ_EDIT, OBJ_RECTANGLE_LABEL objects.
 	*/
-	OBJPROP_XSIZE, 
+	OBJPROP_XSIZE,
 	/*
-		int The object's height along the Y axis in pixels. Specified for  OBJ_LABEL (read only),
+	int The object's height along the Y axis in pixels. Specified for  OBJ_LABEL (read only),
 	OBJ_BUTTON, OBJ_CHART, OBJ_BITMAP, OBJ_BITMAP_LABEL, OBJ_EDIT, OBJ_RECTANGLE_LABEL objects.
 	*/
 	OBJPROP_YSIZE,
 	/*
-		int The X coordinate of the upper left corner of the rectangular visible area in the graphical
-	objects "Bitmap Label" and "Bitmap" (OBJ_BITMAP_LABEL and OBJ_BITMAP).The value is set in pixels 
+	int The X coordinate of the upper left corner of the rectangular visible area in the graphical
+	objects "Bitmap Label" and "Bitmap" (OBJ_BITMAP_LABEL and OBJ_BITMAP).The value is set in pixels
 	relative to the upper left corner of the original image.
 	*/
 	OBJPROP_XOFFSET,
 	/*
-		int The Y coordinate of the upper left corner of the rectangular visible area in the graphical
+	int The Y coordinate of the upper left corner of the rectangular visible area in the graphical
 	objects "Bitmap Label" and "Bitmap" (OBJ_BITMAP_LABEL and OBJ_BITMAP).The value is set in pixels
 	relative to the upper left corner of the original image.
 	*/
-	OBJPROP_YOFFSET, 
+	OBJPROP_YOFFSET,
 	OBJPROP_PERIOD,			//ENUM_TIMEFRAMESTimeframe for the Chart object
 	OBJPROP_DATE_SCALE,		//bool Displaying the time scale for the Chart object
 	OBJPROP_CHART_SCALE,	//The scale for the Chart object						//value in the range 05
@@ -613,7 +631,7 @@ enum ENUM_OBJECT_PROPERTY_DOUBLE{
 	OBJPROP_LEVELVALUE,	//double Level value modifier = level number
 	OBJPROP_SCALE,		//double Scale(properties of Gann objects and Fibonacci Arcs)
 	/*
-		double Angle for the objects with no angle specified, created from a program, the
+	double Angle for the objects with no angle specified, created from a program, the
 	value is equal to EMPTY_VALUE
 	*/
 	OBJPROP_ANGLE,
@@ -625,7 +643,7 @@ enum ENUM_OBJECT_PROPERTY_STRING{
 	OBJPROP_NAME, //string Object name
 	OBJPROP_TEXT, //string Description of the object(the text contained in the object)
 	/*
-		string The text of a tooltip.If the property is not set, then the tooltip generated automatically by the
+	string The text of a tooltip.If the property is not set, then the tooltip generated automatically by the
 	terminal is shown.A tooltip can be disabled by setting the "\n" (line feed) value to it
 	*/
 	OBJPROP_TOOLTIP,
@@ -648,7 +666,7 @@ enum ENUM_OBJECT_PROPERTY_STRING{
 #define OBJ_ALL_PERIODS		0x001FFFFF	// Object shown is on all timeframes.
 #define OBJ_NO_PERIODS				 0	// Object shown is on all timeframes.
 
-//For the OBJ_RECTANGLE_LABEL 
+//For the OBJ_RECTANGLE_LABEL
 //object("Rectangle label") one of the three design modes can be set, to which the following values of ENUM_BORDER_TYPE correspond.
 enum ENUM_BORDER_TYPE{
 	BORDER_FLAT, //Flat form
@@ -656,8 +674,7 @@ enum ENUM_BORDER_TYPE{
 	BORDER_SUNKEN //Concave form
 };
 
-
-//For the OBJ_EDIT 
+//For the OBJ_EDIT
 //object("Edit") and for the ChartScreenShot() function, you can specify the horizontal alignment type using the values of the ENUM_ALIGN_MODE enumeration.
 enum ENUM_ALIGN_MODE{
 	ALIGN_LEFT, //Left alignment
@@ -684,7 +701,6 @@ enum ENUM_ARROW_ANCHOR{
 	ANCHOR_BOTTOM,	//Anchor on the bottom side
 };
 
-
 //Label(OBJ_LABEL);
 //Button(OBJ_BUTTON);
 //Chart(OBJ_CHART);
@@ -704,7 +720,6 @@ enum ENUM_GANN_DIRECTION{
 	GANN_DOWN_TREND, // Line corresponding to the downward trend
 };
 
-
 //-------------------------Levels of Elliott wave
 enum ENUM_ELLIOT_WAVE_DEGREE{
 	ELLIOTT_GRAND_SUPERCYCLE, 	//Grand Supercycle
@@ -717,7 +732,6 @@ enum ENUM_ELLIOT_WAVE_DEGREE{
 	ELLIOTT_MINUETTE,			//Minuette
 	ELLIOTT_SUBMINUETTE,		//Subminuette
 };
-
 
 //*******************************************
 //           uninitialize reason codes
@@ -770,23 +784,22 @@ enum ENUM_CHART_EVENT{
 //6	State of the first extra mouse button
 //7	State of the second extra mouse button
 
-
 //                    Chart Properties
 //For functions ChartSetInteger() and ChartGetInteger()
 enum ENUM_CHART_PROPERTY_INTEGER{
 	CHART_IS_OBJECT,	//bool Identifying "Chart" (OBJ_CHART)object  returns true for a graphical object.Returns false for a real chart
 	CHART_BRING_TO_TOP, //bool Show chart on top of other charts
 	/*
-		bool Scrolling the chart horizontally using the left mouse button.Vertical scrolling is also available if the value of 
+	bool Scrolling the chart horizontally using the left mouse button.Vertical scrolling is also available if the value of
 	any following properties is set to true: CHART_SCALEFIX, CHART_SCALEFIX_11 or CHART_SCALE_PT_PER_BAR
 	*/
-	CHART_MOUSE_SCROLL, 
+	CHART_MOUSE_SCROLL,
 	CHART_EVENT_MOUSE_MOVE,		//bool Send notifications of mouse move and mouse click events(CHARTEVENT_MOUSE_MOVE) to all mql5 programs on a chart
 	CHART_EVENT_OBJECT_CREATE,	//bool Send a notification of an event of new object creation(CHARTEVENT_OBJECT_CREATE) to all mql5 - programs on a chart
 	CHART_EVENT_OBJECT_DELETE,	//bool Send a notification of an event of object deletion(CHARTEVENT_OBJECT_DELETE) to all mql5 - programs on a chart
 	CHART_MODE,					//ENUM_CHART_MODE Chart type(candlesticks, bars or line)
 	CHART_FOREGROUND,			//bool Price chart in the foreground
-	CHART_SHIF,					//bool Mode of price chart indent from the right border
+	CHART_SHIFT,					//bool Mode of price chart indent from the right border
 	CHART_AUTOSCROLL,			//bool Mode of automatic moving to the right border of the chart
 	CHART_SCALE,				//int  Scale from 0 to 5
 	CHART_SCALEFIX,				//bool Fixed scale mode
@@ -798,22 +811,22 @@ enum ENUM_CHART_PROPERTY_INTEGER{
 	CHART_SHOW_LAST_LINE,		//bool Display Last values as a horizontal line in a chart
 	CHART_SHOW_PERIOD_SEP,		//bool Display vertical separators between adjacent periods
 	CHART_SHOW_GRID,			//bool Display grid in the chart
-	CHART_SHOW_VOLUMES,			//ENUM_CHART_VOLUME_MODE  Display volume in the chart ->enum 
+	CHART_SHOW_VOLUMES,			//ENUM_CHART_VOLUME_MODE  Display volume in the chart ->enum
 	CHART_SHOW_OBJECT_DESCR,	//bool Pop - up descriptions of graphical objects
 	CHART_VISIBLE_BARS,			//int The number of bars on the chart that can be displayed
 	CHART_WINDOWS_TOTAL,		//int The total number of chart windows, including indicator subwindows
 	CHART_WINDOW_IS_VISIBLE,	//bool Visibility of subwindows  bool r / o   modifier - subwindow number
 	CHART_WINDOW_HANDLE,		//int Chart window handle(HWND)	int r / o
 	/*
-		int    The distance between the upper frame of the indicator subwindow and the upper frame of the main chart 
+	int    The distance between the upper frame of the indicator subwindow and the upper frame of the main chart
 	window, along the vertical Y axis, in pixels.In case of a mouse event, the cursor coordinates are passed
-	in terms of the coordinates of the main chart window, while the coordinates of graphical objects in an 
+	in terms of the coordinates of the main chart window, while the coordinates of graphical objects in an
 	indicator subwindow are set relative to the upper left corner of the subwindow.
-		The value is required for converting the absolute coordinates of the main chart to the local coordinates
+	The value is required for converting the absolute coordinates of the main chart to the local coordinates
 	of a subwindow for correct work with the graphical objects, whose coordinates are set relative to  the upper
 	left corner of the subwindow frame. int r / o     modifier - subwindow number
 	*/
-	CHART_WINDOW_YDISTANCE, 	
+	CHART_WINDOW_YDISTANCE,
 	CHART_FIRST_VISIBLE_BAR,	//int Number of the first visible bar in the chart.Indexing of bars is the same as for timeseries.
 	CHART_WIDTH_IN_BARS,		//int Chart width in bars
 	CHART_WIDTH_IN_PIXELS,		//int Chart width in pixels
@@ -841,24 +854,22 @@ enum ENUM_CHART_PROPERTY_INTEGER{
 enum ENUM_CHART_PROPERTY_DOUBLE{
 	CHART_SHIFT_SIZE, //doubleThe size of the zero bar indent from the right border in percents | double(from 10 to 50 percents)
 	/*
-		double Chart fixed position from the left border in percent value.Chart fixed position is marked by a small gray 
-	triangle on the horizontal time axis.It is displayed only if the automatic chart scrolling to the right on 
-	tick incoming is disabled(see CHART_AUTOSCROLL property).The bar on a fixed position remains in the same 
+	double Chart fixed position from the left border in percent value.Chart fixed position is marked by a small gray
+	triangle on the horizontal time axis.It is displayed only if the automatic chart scrolling to the right on
+	tick incoming is disabled(see CHART_AUTOSCROLL property).The bar on a fixed position remains in the same
 	place when zooming in and out.
 	*/
-	CHART_FIXED_POSITION, 
+	CHART_FIXED_POSITION,
 	CHART_FIXED_MAX, //double Fixed  chart maximum
 	CHART_FIXED_MIN, //double Fixed  chart minimum
 	CHART_POINTS_PER_BAR, //double Scale in points per bar
 	CHART_PRICE_MIN, //double Chart minimum 	double r / o   modifier - subwindow number
 	CHART_PRICE_MAX, //double Chart maximum 	double r / o   modifier - subwindow number
-
 };
 //For functions ChartSetString() and ChartGetString()
 enum ENUM_CHART_PROPERTY_STRING {
 	CHART_COMMENT  //string Text of a comment in a chart
 };
-
 
 //*******************************************
 //           Positioning Constants
@@ -871,7 +882,7 @@ enum ENUM_CHART_POSITION{
 };
 
 //*******************************************
-//           Positioning Constants
+//           Chart Representation
 //res::http://www.mql5.com/en/docs/constants/chartconstants/chart_view
 //*******************************************
 enum ENUM_CHART_MODE {
@@ -892,9 +903,9 @@ enum ENUM_CHART_VOLUME_MODE{
 //*******************************************
 /*
 	Information about the client terminal can be obtained by two functions : TerminalInfoInteger() and
-TerminalInfoString().For parameters, these functions accept values from ENUM_TERMINAL_INFO_INTEGER 
-and ENUM_TERMINAL_INFO_STRING respectively.
-*/
+	TerminalInfoString().For parameters, these functions accept values from ENUM_TERMINAL_INFO_INTEGER
+	and ENUM_TERMINAL_INFO_STRING respectively.
+	*/
 enum ENUM_TERMINAL_INFO_INTEGER{
 	TERMINAL_BUILD,				//int The client terminal build number
 	TERMINAL_COMMUNITY_ACCOUNT, //bool The flag indicates the presence of MQL5.community authorization data in the terminal
@@ -924,8 +935,8 @@ enum ENUM_TERMINAL_INFO_DOUBLE{
 
 /*
 	File operations can be performed only in two directories; corresponding paths can be obtained using
-the request for TERMINAL_DATA_PATH and TERMINAL_COMMONDATA_PATH properties.
-*/
+	the request for TERMINAL_DATA_PATH and TERMINAL_COMMONDATA_PATH properties.
+	*/
 enum ENUM_TERMINAL_INFO_STRING{
 	TERMINAL_LANGUAGE, //Language of the terminal
 	TERMINAL_COMPANY, //Company name
@@ -937,9 +948,9 @@ enum ENUM_TERMINAL_INFO_STRING{
 
 /*
 	For a better understanding of paths, stored in properties of TERMINAL_PATH, TERMINAL_DATA_PATH and
-TERMINAL_COMMONDATA_PATH parameters, it is recommended to execute the script, which will return these 
-values for the current copy of the client terminal, installed on your computer
-*/
+	TERMINAL_COMMONDATA_PATH parameters, it is recommended to execute the script, which will return these
+	values for the current copy of the client terminal, installed on your computer
+	*/
 
 //*******************************************
 //          Running MQL5 Program Properties
@@ -952,7 +963,7 @@ values for the current copy of the client terminal, installed on your computer
 enum ENUM_MQL_INFO_INTEGER{
 	MQL_MEMORY_LIMIT, //int Maximum possible amount of dynamic memory for MQL5 program in MB
 	MQL_MEMORY_USED, //int The memory size used by MQL5 program in MB
-	MQL_PROGRAM_TYPE, //ENUM_PROGRAM_TYPE Type of the mql5 program   
+	MQL_PROGRAM_TYPE, //ENUM_PROGRAM_TYPE Type of the mql5 program
 	MQL_DLLS_ALLOWED, //bool The permission to use DLL for the given executed program
 	MQL_TRADE_ALLOWED, //bool The permission to trade for the given executed program
 	MQL_SIGNALS_ALLOWED, //bool The permission to modify the Signals for the given executed program
@@ -964,17 +975,16 @@ enum ENUM_MQL_INFO_INTEGER{
 	MQL_FRAME_MODE //bool The flag, that indicates the Expert Advisor operating in gathering optimization result frames mode
 };
 /*
-	Type of license of the EX5 module.The license refers to the EX5 module, 
-from which a request is made using MQLInfoInteger(MQL_LICENSE_TYPE). return ENUM_LICENSE_TYPEs
-*/
-ENUM_LICENSE_TYPE MQL_LICENSE_TYPE; 
+	Type of license of the EX5 module.The license refers to the EX5 module,
+	from which a request is made using MQLInfoInteger(MQL_LICENSE_TYPE). return ENUM_LICENSE_TYPEs
+	*/
+ENUM_LICENSE_TYPE MQL_LICENSE_TYPE;
 
 //For function MQLInfoString
 enum ENUM_MQL_INFO_STRING{
 	MQL_PROGRAM_NAME, //Name of the mql5 - program executed
 	MQL5_PROGRAM_PATH //Path for the given executed program
 };
-
 
 //For information about the type of the running program, values of ENUM_PROGRAM_TYPE are used.
 enum ENUM_PROGRAM_TYPE{
@@ -987,10 +997,10 @@ enum ENUM_LICENSE_TYPE{
 	LICENSE_FREE, //A free unlimited version
 	LICENSE_DEMO, //A trial version of a paid product from the Market.It works only in the strategy tester
 	/*
-		A purchased licensed version allows at least 5 activations.The number of activations is
+	A purchased licensed version allows at least 5 activations.The number of activations is
 	specified by seller.Seller may increase the allowed number of activations
 	*/
-	LICENSE_FULL, 
+	LICENSE_FULL,
 	LICENSE_TIME  //A version with limited term liсense
 };
 
@@ -998,8 +1008,8 @@ enum ENUM_LICENSE_TYPE{
 //          Symbol Properties
 //res::http://www.mql5.com/en/docs/constants/environment_state/marketinfoconstants
 //*******************************************
-//	To obtain the current market information there are several functions : SymbolInfoInteger(), SymbolInfoDouble() 
-//and SymbolInfoString().The first parameter is the symbol name, the values of the second function parameter can be 
+//	To obtain the current market information there are several functions : SymbolInfoInteger(), SymbolInfoDouble()
+//and SymbolInfoString().The first parameter is the symbol name, the values of the second function parameter can be
 //one of the identifiers of ENUM_SYMBOL_INFO_INTEGER, ENUM_SYMBOL_INFO_DOUBLE and ENUM_SYMBOL_INFO_STRING.
 
 //For function SymbolInfoInteger()
@@ -1019,7 +1029,7 @@ enum ENUM_SYMBOL_INFO_INTEGER{
 	int 	Maximal number of requests shown in Depth of Market.For symbols that have no queue of requests,
 	the value is equal to zero.
 	*/
-	SYMBOL_TICKS_BOOKDEPTH, 
+	SYMBOL_TICKS_BOOKDEPTH,
 	SYMBOL_TRADE_CALC_MODE, //ENUM_SYMBOL_CALC_MODE Contract price calculation mode ENUM_SYMBOL_CALC_MODE
 	SYMBOL_TRADE_MODE,		//ENUM_SYMBOL_TRADE_MODE Order execution type ENUM_SYMBOL_TRADE_MODE
 	SYMBOL_START_TIME,		//datetime Date of the symbol trade beginning(usually used for futures)
@@ -1029,15 +1039,15 @@ enum ENUM_SYMBOL_INFO_INTEGER{
 	SYMBOL_TRADE_EXEMODE,	//ENUM_SYMBOL_TRADE_EXECUTION Deal execution mode   ENUM_SYMBOL_TRADE_EXECUTION
 	SYMBOL_SWAP_MODE,		//ENUM_SYMBOL_SWAP_MODE Swap calculation model    ENUM_SYMBOL_SWAP_MODE
 	SYMBOL_SWAP_ROLLOVER3DAYS, //ENUM_DAY_OF_WEEK Weekday to charge 3 days swap rollover  ENUM_DAY_OF_WEEK
-	SYMBOL_EXPIRATION_MODE, //int Flags of allowed order expiration modes 
+	SYMBOL_EXPIRATION_MODE, //int Flags of allowed order expiration modes
 	SYMBOL_FILLING_MODE,	//int Flags of allowed order filling modes
 	SYMBOL_ORDER_MODE		//int Flags of allowed order types
 };
 
 /*
-	There are several symbol trading modes.Information about trading modes of a certain symbol is reflected 
-in the values of enumeration ENUM_SYMBOL_TRADE_MODE.
-*/
+	There are several symbol trading modes.Information about trading modes of a certain symbol is reflected
+	in the values of enumeration ENUM_SYMBOL_TRADE_MODE.
+	*/
 enum ENUM_SYMBOL_TRADE_MODE{
 	SYMBOL_TRADE_MODE_DISABLED, //Trade is disabled for the symbol
 	SYMBOL_TRADE_MODE_LONGONLY, //Allowed only long positions
@@ -1054,11 +1064,11 @@ enum ENUM_SYMBOL_TRADE_EXECUTION{
 };
 /*
 	For each symbol several expiration modes of pending orders can be specified.A flag is matched to each mode.Flags can be
-combined using the operation of logical OR(| ), for example, SYMBOL_EXPIRATION_GTC | SYMBOL_EXPIRATION_SPECIFIED.In order
-to check whether a certain mode is allowed for the symbol, the result of the logical AND(&) should be compared to the mode flag.
-If flag SYMBOL_EXPIRATION_SPECIFIED is specified for a symbol, then while sending a pending order, you may specify the moment
-this pending order is valid till.
-*/
+	combined using the operation of logical OR(| ), for example, SYMBOL_EXPIRATION_GTC | SYMBOL_EXPIRATION_SPECIFIED.In order
+	to check whether a certain mode is allowed for the symbol, the result of the logical AND(&) should be compared to the mode flag.
+	If flag SYMBOL_EXPIRATION_SPECIFIED is specified for a symbol, then while sending a pending order, you may specify the moment
+	this pending order is valid till.
+	*/
 #define SYMBOL_EXPIRATION_GTC		1  //The order is valid during the unlimited time period, until it is explicitly canceled
 #define SYMBOL_EXPIRATION_DAY		2  //The order is valid till the end of the day
 #define SYMBOL_EXPIRATION_SPECIFIED 4  //The expiration time is specified in the order
@@ -1066,50 +1076,49 @@ this pending order is valid till.
 
 /*
 	When sending an order, you can specify the filling policy for the volume set in the order.Allowed order filling modes for
-each symbol are specified in the table.You can set several modes for one symbol by combining flags.The flags can be combined
-by the operation of the logical OR(| ), for example, SYMBOL_FILLING_FOK | SYMBOL_FILLING_IOC.In order to check whether a
-certain mode is allowed for the symbol, the result of the logical AND(&) should be compared to the mode flag.
-*/
+	each symbol are specified in the table.You can set several modes for one symbol by combining flags.The flags can be combined
+	by the operation of the logical OR(| ), for example, SYMBOL_FILLING_FOK | SYMBOL_FILLING_IOC.In order to check whether a
+	certain mode is allowed for the symbol, the result of the logical AND(&) should be compared to the mode flag.
+	*/
 
-//---Fill Policy		Fill or Kill		
-/*	
+//---Fill Policy		Fill or Kill
+/*
 	This policy means that a deal can be executed only with the specified volume.If
-the necessary amount of a financial instrument is currently unavailable in the
-market, the order will not be executed.The required volume can be filled using
-several offers available on the market at the moment.
-*/
+	the necessary amount of a financial instrument is currently unavailable in the
+	market, the order will not be executed.The required volume can be filled using
+	several offers available on the market at the moment.
+	*/
 #define SYMBOL_FILLING_FOK  1
 //---Immediate or Cancel
-/*	
+/*
 	In this case a trader agrees to execute a deal with the volume maximally available
-in the market within that indicated in the order.In case the order cannot be filled
-completely, the available volume of the order will be filled, and the remaining volume
-will be canceled.The possibility of using IOC orders is determined at the trade server.
-*/
-#define SYMBOL_FILLING_IOC  2       		
+	in the market within that indicated in the order.In case the order cannot be filled
+	completely, the available volume of the order will be filled, and the remaining volume
+	will be canceled.The possibility of using IOC orders is determined at the trade server.
+	*/
+#define SYMBOL_FILLING_IOC  2
 //---Return
-/*	
+/*
 	This policy is used only for market orders(Buy and Sell), limit and stop limit orders
-and only for the symbols with Market or Exchange execution.In case of partial filling a market
-or limit order with remaining volume is not canceled but processed further.
-In the Request and Instant execution modes the Fill or Kill policy is always used for market
-orders, and the Return policy is always used for limit orders.In this case, when sending
-orders using OrderSend or OrderSendAsync, there is no need to specify a fill policy for them.
-*/
+	and only for the symbols with Market or Exchange execution.In case of partial filling a market
+	or limit order with remaining volume is not canceled but processed further.
+	In the Request and Instant execution modes the Fill or Kill policy is always used for market
+	orders, and the Return policy is always used for limit orders.In this case, when sending
+	orders using OrderSend or OrderSendAsync, there is no need to specify a fill policy for them.
+	*/
 //----No identifier
 
-/*	
+/*
 	When sending a trade request using OrderSend() function, an order type from ENUM_ORDER_TYPE
-enumeration should be specified for some operations.Not all types of orders may be allowed for a
-specific symbol.SYMBOL_ORDER_MODE property describes the flags of the allowed order types.
-*/
+	enumeration should be specified for some operations.Not all types of orders may be allowed for a
+	specific symbol.SYMBOL_ORDER_MODE property describes the flags of the allowed order types.
+	*/
 #define SYMBOL_ORDER_MARKET		1 //Market orders are allowed(Buy and Sell)
 #define SYMBOL_ORDER_LIMIT		2 //Limit orders are allowed(Buy Limit and Sell Limit)
 #define SYMBOL_ORDER_STOP		4 //Stop orders are allowed(Buy Stop and Sell Stop)
 #define SYMBOL_ORDER_STOP_LIMIT 8 //Stop - limit orders are allowed(Buy Stop Limit and Sell Stop Limit)
-#define SYMBOL_ORDER_SL			16 //Stop Loss is allowed 
+#define SYMBOL_ORDER_SL			16 //Stop Loss is allowed
 #define SYMBOL_ORDER_TP			32 //Take Profit is allowed
-
 
 //Values of the ENUM_DAY_OF_WEEK enumeration are used for specifying weekdays.
 enum ENUM_DAY_OF_WEEK{
@@ -1123,10 +1132,10 @@ enum ENUM_DAY_OF_WEEK{
 };
 /*
 	Methods of swap calculation at position transfer are specified in enumeration ENUM_SYMBOL_SWAP_MODE.The method of
-swap calculation determines the units of measure of the SYMBOL_SWAP_LONG and SYMBOL_SWAP_SHORT parameters.For
-example, if swaps are charged in the client deposit currency, then the values of those parameters are specified
-as an amount of money in the client deposit currency.
-*/
+	swap calculation determines the units of measure of the SYMBOL_SWAP_LONG and SYMBOL_SWAP_SHORT parameters.For
+	example, if swaps are charged in the client deposit currency, then the values of those parameters are specified
+	as an amount of money in the client deposit currency.
+	*/
 enum ENUM_SYMBOL_SWAP_MODE {
 	//Swaps disabled(no swaps)
 	SYMBOL_SWAP_MODE_DISABLED,
@@ -1205,17 +1214,17 @@ enum ENUM_SYMBOL_CALC_MODE{
 	*/
 	SYMBOL_CALC_MODE_EXCH_FUTURES,
 	/*
-		FORTS Futures mode   calculation of margin and profit for trading futures contracts on FORTS.The margin
+	FORTS Futures mode   calculation of margin and profit for trading futures contracts on FORTS.The margin
 	may be reduced by the amount of MarginDiscount deviation according to the following rules :
-		1. If the price of a long position(buy order) is less than the estimated price,
+	1. If the price of a long position(buy order) is less than the estimated price,
 	MarginDiscount = Lots*((PriceSettle - PriceOrder)*TickPrice / TickSize)
-		2. If the price of a short position(sell order) exceeds the estimated price,
+	2. If the price of a short position(sell order) exceeds the estimated price,
 	MarginDiscount = Lots*((PriceOrder - PriceSettle)*TickPrice / TickSize)
 	where :
-		PriceSettle  estimated(clearing) price of the previous session;
-		PriceOrder  average weighted position price or open price set in the order(request);
-		TickPrice  tick price(cost of the price change by one point)
-		TickSize  tick size(minimum price change step)
+	PriceSettle  estimated(clearing) price of the previous session;
+	PriceOrder  average weighted position price or open price set in the order(request);
+	TickPrice  tick price(cost of the price change by one point)
+	TickSize  tick size(minimum price change step)
 
 	Margin: Lots*InitialMargin or Lots*MaintenanceMargin
 	Profit : (close_price - open_price)*Lots*TickPrice / TickSize
@@ -1243,27 +1252,27 @@ enum ENUM_SYMBOL_INFO_DOUBLE{
 	SYMBOL_VOLUME_MAX, //Maximal volume for a deal
 	SYMBOL_VOLUME_STEP, //Minimal volume change step for deal execution
 	/*
-		Maximum allowed aggregate volume of an open position and pending orders in one
-	direction(buy or sell) for the symbol.For example, with the limitation of 5 lots, 
-	you can have an open buy position with the volume of 5 lots and place a pending order 
-	Sell Limit with the volume of 5 lots.But in this case you cannot place a Buy Limit 
+	Maximum allowed aggregate volume of an open position and pending orders in one
+	direction(buy or sell) for the symbol.For example, with the limitation of 5 lots,
+	you can have an open buy position with the volume of 5 lots and place a pending order
+	Sell Limit with the volume of 5 lots.But in this case you cannot place a Buy Limit
 	pending order(since the total volume in one direction will exceed the limitation) or
 	place Sell Limit with the volume more than 5 lots.
 	*/
-	SYMBOL_VOLUME_LIMIT, 
+	SYMBOL_VOLUME_LIMIT,
 	SYMBOL_SWAP_LONG, //Long swap value
 	SYMBOL_SWAP_SHORT, //Short swap value
-	/*	
-		Initial margin means the amount in the margin currency required for opening a position
+	/*
+	Initial margin means the amount in the margin currency required for opening a position
 	with the volume of one lot.It is used for checking a client's assets when he or she enters the market.
 	*/
-	SYMBOL_MARGIN_INITIAL, 
+	SYMBOL_MARGIN_INITIAL,
 	/*
-		The maintenance margin.If it is set, it sets the margin amount in the margin 
-	currency of the symbol, charged from one lot.It is used for checking a client's assets when 
+	The maintenance margin.If it is set, it sets the margin amount in the margin
+	currency of the symbol, charged from one lot.It is used for checking a client's assets when
 	his/her account state changes. If the maintenance margin is equal to 0, the initial margin is used.
 	*/
-	SYMBOL_MARGIN_MAINTENANCE, 
+	SYMBOL_MARGIN_MAINTENANCE,
 	SYMBOL_SESSION_VOLUME, //Summary volume of current session deals
 	SYMBOL_SESSION_TURNOVER, //Summary turnover of the current session
 	SYMBOL_SESSION_INTEREST, //Summary open interest
@@ -1285,32 +1294,30 @@ enum ENUM_SYMBOL_INFO_STRING{
 	SYMBOL_BANK, //Feeder of the current quote
 	SYMBOL_DESCRIPTION, //Symbol description
 	/*
-		The name of a symbol in the ISIN system(International Securities Identification Number).The International 
+	The name of a symbol in the ISIN system(International Securities Identification Number).The International
 	Securities Identification Number is a 12 - digit alphanumeric code that uniquely identifies a security.The
 	presence of this symbol property is determined on the side of a trade server.
 	*/
-	SYMBOL_ISIN, 
+	SYMBOL_ISIN,
 	SYMBOL_PATH //Path in the symbol tree
 };
-
-
 
 //*******************************************
 //           Account Properties
 //res::http://www.mql5.com/en/docs/constants/environment_state/accountinformation
 //*******************************************
-//To obtain information about the current account there are several functions : AccountInfoInteger(), AccountInfoDouble() 
+//To obtain information about the current account there are several functions : AccountInfoInteger(), AccountInfoDouble()
 //and AccountInfoString().The function parameter values can accept values from the corresponding ENUM_ACCOUNT_INFO enumerations.
 
 //For the function AccountInfoInteger()
 enum ENUM_ACCOUNT_INFO_INTEGER{
- ACCOUNT_LOGIN,			//long Account number
- ACCOUNT_TRADE_MODE,	//ENUM_ACCOUNT_TRADE_MODE Account trade mode ENUM_ACCOUNT_TRADE_MODE
- ACCOUNT_LEVERAGE,		//long Account leverage
- ACCOUNT_LIMIT_ORDERS,	//int Maximum allowed number of active pending orders
- ACCOUNT_MARGIN_SO_MODE, //ENUM_ACCOUNT_STOPOUT_MODE Mode for setting the minimal allowed margin 	ENUM_ACCOUNT_STOPOUT_MODE;
- ACCOUNT_TRADE_ALLOWED, //bool Allowed trade for the current account
- ACCOUNT_TRADE_EXPERT,	//bool Allowed trade for an Expert Advisor
+	ACCOUNT_LOGIN,			//long Account number
+	ACCOUNT_TRADE_MODE,	//ENUM_ACCOUNT_TRADE_MODE Account trade mode ENUM_ACCOUNT_TRADE_MODE
+	ACCOUNT_LEVERAGE,		//long Account leverage
+	ACCOUNT_LIMIT_ORDERS,	//int Maximum allowed number of active pending orders
+	ACCOUNT_MARGIN_SO_MODE, //ENUM_ACCOUNT_STOPOUT_MODE Mode for setting the minimal allowed margin 	ENUM_ACCOUNT_STOPOUT_MODE;
+	ACCOUNT_TRADE_ALLOWED, //bool Allowed trade for the current account
+	ACCOUNT_TRADE_EXPERT,	//bool Allowed trade for an Expert Advisor
 };
 
 //For the function AccountInfoDouble()
@@ -1323,15 +1330,15 @@ enum ENUM_ACCOUNT_INFO_DOUBLE{
 	ACCOUNT_FREEMARGIN, //Free margin of an account in the deposit currency
 	ACCOUNT_MARGIN_LEVEL, //Account margin level in percents
 	/*
-		Margin call level.Depending on the set ACCOUNT_MARGIN_SO_MODE is expressed
+	Margin call level.Depending on the set ACCOUNT_MARGIN_SO_MODE is expressed
 	in percents or in the deposit currency
 	*/
-	ACCOUNT_MARGIN_SO_CALL, 
+	ACCOUNT_MARGIN_SO_CALL,
 	/*
-		Margin stop out level.Depending on the set ACCOUNT_MARGIN_SO_MODE is expressed 
+	Margin stop out level.Depending on the set ACCOUNT_MARGIN_SO_MODE is expressed
 	in percents or in the deposit currency
 	*/
-	ACCOUNT_MARGIN_SO_SO 
+	ACCOUNT_MARGIN_SO_SO
 };
 
 //For function AccountInfoString()
@@ -1342,11 +1349,10 @@ enum ENUM_ACCOUNT_INFO_STRING{
 	ACCOUNT_COMPANY //Name of a company that serves the account
 };
 
-
 /*
 	There are several types of accounts that can be opened on a trade server.The type of account on which an MQL5 program is
-running can be found out using the ENUM_ACCOUNT_TRADE_MODE enumeration.
-*/
+	running can be found out using the ENUM_ACCOUNT_TRADE_MODE enumeration.
+	*/
 enum ENUM_ACCOUNT_TRADE_MODE{
 	ACCOUNT_TRADE_MODE_DEMO,	//Demo account
 	ACCOUNT_TRADE_MODE_CONTEST, //Contest account
@@ -1355,96 +1361,93 @@ enum ENUM_ACCOUNT_TRADE_MODE{
 
 /*
 	In case equity is not enough for maintaining open positions, the Stop Out situation, i.e.forced closing occurs.The
-minimum margin level at which Stop Out occurs can be set in percentage or in monetary terms.To find out the mode set for the
-account use the ENUM_ACCOUNT_STOPOUT_MODE enumeration.
-*/
+	minimum margin level at which Stop Out occurs can be set in percentage or in monetary terms.To find out the mode set for the
+	account use the ENUM_ACCOUNT_STOPOUT_MODE enumeration.
+	*/
 enum ENUM_ACCOUNT_STOPOUT_MODE{
 	ACCOUNT_STOPOUT_MODE_PERCENT, //Account stop out mode in percents
 	ACCOUNT_STOPOUT_MODE_MONEY   //Account stop out mode in money
 };
-
 
 //*******************************************
 //           Testing Statistics
 //res::http://www.mql5.com/en/docs/constants/environment_state/statistics
 //*******************************************
 enum ENUM_STATISTICS{
-	 STAT_INITIAL_DEPOSIT,	//double The value of the initial deposit
-	 STAT_WITHDRAWAL,		//double Money withdrawn from an account
-	 STAT_PROFIT,			//double Net profit after testing, the sum of STAT_GROSS_PROFIT and STAT_GROSS_LOSS(STAT_GROSS_LOSS is always less than or equal to zero)
-	 STAT_GROSS_PROFIT,		//double Total profit, the sum of all profitable(positive) trades.The value is greater than or equal to zero
-	 STAT_GROSS_LOSS,		//double Total loss, the sum of all negative trades.The value is less than or equal to zero
-	 STAT_MAX_PROFITTRADE,	//double Maximum profit  the largest value of all profitable trades.The value is greater than or equal to zero
-	 STAT_MAX_LOSSTRADE,	//double Maximum loss  the lowest value of all losing trades.The value is less than or equal to zero
-	 STAT_CONPROFITMAX,		//double Maximum profit in a series of profitable trades.The value is greater than or equal to zero
-	 STAT_CONPROFITMAX_TRADES, //int The number of trades that have formed STAT_CONPROFITMAX(maximum profit in a series of profitable trades)
-	 STAT_MAX_CONWINS,		//double The total profit of the longest series of profitable trades
-	 STAT_MAX_CONPROFIT_TRADES, //int The number of trades in the longest series of profitable trades STAT_MAX_CONWINS
-	 STAT_CONLOSSMAX,		//double Maximum loss in a series of losing trades.The value is less than or equal to zero
-	 STAT_CONLOSSMAX_TRADES, //int The number of trades that have formed STAT_CONLOSSMAX(maximum loss in a series of losing trades)
-	 STAT_MAX_CONLOSSES,	//double The total loss of the longest series of losing trades
-	 STAT_MAX_CONLOSS_TRADES, //int The number of trades in the longest series of losing trades STAT_MAX_CONLOSSES
-	 STAT_BALANCEMIN,		//double Minimum balance value
-	 /*
-		double Maximum balance drawdown in monetary terms.In the process of trading, a balance may have numerous drawdowns; here 
-	 the largest value is taken
-	 */
-	 STAT_BALANCE_DD,
-	 /*
-		double Balance drawdown as a percentage that was recorded at the moment of the maximum balance drawdown in monetary
-	 terms(STAT_BALANCE_DD).
-	 */
-	 STAT_BALANCEDD_PERCENT, 
-	 /*
-		double Maximum balance drawdown as a percentage.In the process of trading, a balance may have numerous drawdowns,
-	 for each of which the relative drawdown value in percents is calculated.The greatest value is returned
-	 */
-	 STAT_BALANCE_DDREL_PERCENT,
-	 /*
-		double Balance drawdown in monetary terms that was recorded at the moment of the maximum balance drawdown as a
-	 percentage(STAT_BALANCE_DDREL_PERCENT).
-	 */
-	 STAT_BALANCE_DD_RELATIVE, 
-	 STAT_EQUITYMIN,		//double Minimum equity value
-	 /*
-		double Maximum equity drawdown in monetary terms.In the process of trading, numerous drawdowns may appear on the equity; 
-	 here the largest value is taken
-	 */
-	 STAT_EQUITY_DD,		
-	 STAT_EQUITYDD_PERCENT, //double Drawdown in percent that was recorded at the moment of the maximum equity drawdown in monetary terms(STAT_EQUITY_DD).
-	 /*
-		double Maximum equity drawdown as a percentage.In the process of trading, an equity may have numerous drawdowns, 
-	 for each of which the relative drawdown value in percents is calculated.The greatest value is returned
-	 */
-	 STAT_EQUITY_DDREL_PERCENT, 
-	 /*
-		double Equity drawdown in monetary terms that was recorded at the moment of the maximum equity drawdown in percent
-	 (STAT_EQUITY_DDREL_PERCENT).
-	 */
-	 STAT_EQUITY_DD_RELATIVE, 
-	 STAT_EXPECTED_PAYOFF,	//double Expected payoff
-	 /*
-		double Profit factor, equal to  the ratio of STAT_GROSS_PROFIT / STAT_GROSS_LOSS.If STAT_GROSS_LOSS = 0, the profit factor
-	 is equal to DBL_MAX
-	 */
-	 STAT_PROFIT_FACTOR,	
-	 STAT_RECOVERY_FACTOR,	//double Recovery factor, equal to the ratio of STAT_PROFIT / STAT_BALANCE_DD
-	 STAT_SHARPE_RATIO,		//double Sharpe ratio
-	 STAT_MIN_MARGINLEVEL,	//double Minimum value of the margin level
-	 STAT_CUSTOM_ONTESTER,	//double The value of the calculated custom optimization criterion returned by the OnTester() function
-	 STAT_DEALS,			//int The number of deals
-	 STAT_TRADES,			//int The number of trades
-	 STAT_PROFIT_TRADES,	//int Profitable trades
-	 STAT_LOSS_TRADES,		//int Losing trades
-	 STAT_SHORT_TRADES,		//int Short trades
-	 STAT_LONG_TRADES,		//int Long trades
-	 STAT_PROFIT_SHORTTRADES,	//int Profitable short trades
-	 STAT_PROFIT_LONGTRADES,	//int Profitable long trades
-	 STAT_PROFITTRADES_AVGCON,	//int Average length of a profitable series of trades
-	 STAT_LOSSTRADES_AVGCON		//int Average length of a losing series of trades
+	STAT_INITIAL_DEPOSIT,	//double The value of the initial deposit
+	STAT_WITHDRAWAL,		//double Money withdrawn from an account
+	STAT_PROFIT,			//double Net profit after testing, the sum of STAT_GROSS_PROFIT and STAT_GROSS_LOSS(STAT_GROSS_LOSS is always less than or equal to zero)
+	STAT_GROSS_PROFIT,		//double Total profit, the sum of all profitable(positive) trades.The value is greater than or equal to zero
+	STAT_GROSS_LOSS,		//double Total loss, the sum of all negative trades.The value is less than or equal to zero
+	STAT_MAX_PROFITTRADE,	//double Maximum profit  the largest value of all profitable trades.The value is greater than or equal to zero
+	STAT_MAX_LOSSTRADE,	//double Maximum loss  the lowest value of all losing trades.The value is less than or equal to zero
+	STAT_CONPROFITMAX,		//double Maximum profit in a series of profitable trades.The value is greater than or equal to zero
+	STAT_CONPROFITMAX_TRADES, //int The number of trades that have formed STAT_CONPROFITMAX(maximum profit in a series of profitable trades)
+	STAT_MAX_CONWINS,		//double The total profit of the longest series of profitable trades
+	STAT_MAX_CONPROFIT_TRADES, //int The number of trades in the longest series of profitable trades STAT_MAX_CONWINS
+	STAT_CONLOSSMAX,		//double Maximum loss in a series of losing trades.The value is less than or equal to zero
+	STAT_CONLOSSMAX_TRADES, //int The number of trades that have formed STAT_CONLOSSMAX(maximum loss in a series of losing trades)
+	STAT_MAX_CONLOSSES,	//double The total loss of the longest series of losing trades
+	STAT_MAX_CONLOSS_TRADES, //int The number of trades in the longest series of losing trades STAT_MAX_CONLOSSES
+	STAT_BALANCEMIN,		//double Minimum balance value
+	/*
+	double Maximum balance drawdown in monetary terms.In the process of trading, a balance may have numerous drawdowns; here
+	the largest value is taken
+	*/
+	STAT_BALANCE_DD,
+	/*
+	double Balance drawdown as a percentage that was recorded at the moment of the maximum balance drawdown in monetary
+	terms(STAT_BALANCE_DD).
+	*/
+	STAT_BALANCEDD_PERCENT,
+	/*
+	double Maximum balance drawdown as a percentage.In the process of trading, a balance may have numerous drawdowns,
+	for each of which the relative drawdown value in percents is calculated.The greatest value is returned
+	*/
+	STAT_BALANCE_DDREL_PERCENT,
+	/*
+	double Balance drawdown in monetary terms that was recorded at the moment of the maximum balance drawdown as a
+	percentage(STAT_BALANCE_DDREL_PERCENT).
+	*/
+	STAT_BALANCE_DD_RELATIVE,
+	STAT_EQUITYMIN,		//double Minimum equity value
+	/*
+	double Maximum equity drawdown in monetary terms.In the process of trading, numerous drawdowns may appear on the equity;
+	here the largest value is taken
+	*/
+	STAT_EQUITY_DD,
+	STAT_EQUITYDD_PERCENT, //double Drawdown in percent that was recorded at the moment of the maximum equity drawdown in monetary terms(STAT_EQUITY_DD).
+	/*
+	double Maximum equity drawdown as a percentage.In the process of trading, an equity may have numerous drawdowns,
+	for each of which the relative drawdown value in percents is calculated.The greatest value is returned
+	*/
+	STAT_EQUITY_DDREL_PERCENT,
+	/*
+	double Equity drawdown in monetary terms that was recorded at the moment of the maximum equity drawdown in percent
+	(STAT_EQUITY_DDREL_PERCENT).
+	*/
+	STAT_EQUITY_DD_RELATIVE,
+	STAT_EXPECTED_PAYOFF,	//double Expected payoff
+	/*
+	double Profit factor, equal to  the ratio of STAT_GROSS_PROFIT / STAT_GROSS_LOSS.If STAT_GROSS_LOSS = 0, the profit factor
+	is equal to DBL_MAX
+	*/
+	STAT_PROFIT_FACTOR,
+	STAT_RECOVERY_FACTOR,	//double Recovery factor, equal to the ratio of STAT_PROFIT / STAT_BALANCE_DD
+	STAT_SHARPE_RATIO,		//double Sharpe ratio
+	STAT_MIN_MARGINLEVEL,	//double Minimum value of the margin level
+	STAT_CUSTOM_ONTESTER,	//double The value of the calculated custom optimization criterion returned by the OnTester() function
+	STAT_DEALS,			//int The number of deals
+	STAT_TRADES,			//int The number of trades
+	STAT_PROFIT_TRADES,	//int Profitable trades
+	STAT_LOSS_TRADES,		//int Losing trades
+	STAT_SHORT_TRADES,		//int Short trades
+	STAT_LONG_TRADES,		//int Long trades
+	STAT_PROFIT_SHORTTRADES,	//int Profitable short trades
+	STAT_PROFIT_LONGTRADES,	//int Profitable long trades
+	STAT_PROFITTRADES_AVGCON,	//int Average length of a profitable series of trades
+	STAT_LOSSTRADES_AVGCON		//int Average length of a losing series of trades
 };
-
-
 
 //*******************************************
 //				Trade Constants
@@ -1452,7 +1455,7 @@ enum ENUM_STATISTICS{
 //*******************************************
 
 //--------History Database Properties
-//	When accessing timeseries the SeriesInfoInteger() function is used for obtaining additional symbol information.Identifier of a 
+//	When accessing timeseries the SeriesInfoInteger() function is used for obtaining additional symbol information.Identifier of a
 //required property is passed as the function parameter.The identifier can be one of values of ENUM_SERIES_INFO_INTEGER.
 enum ENUM_SERIES_INFO_INTEGER{
 	SERIES_BARS_COUNT,		//long Bars count for the symbol - period for the current moment
@@ -1463,9 +1466,8 @@ enum ENUM_SERIES_INFO_INTEGER{
 	SERIES_SYNCHRONIZED		//bool Symbol / period data synchronization flag for the current moment
 };
 
-
 //--------Order Properties
-//	Requests to execute trade operations are formalized as orders.Each order has a variety of properties for reading.Information 
+//	Requests to execute trade operations are formalized as orders.Each order has a variety of properties for reading.Information
 //on them can be obtained using functions OrderGet...() and HistoryOrderGet...().
 
 //For functions OrderGetInteger() and HistoryOrderGetInteger()
@@ -1482,10 +1484,10 @@ enum ENUM_ORDER_PROPERTY_INTEGER{
 	ORDER_MAGIC,		//long ID of an Expert Advisor that has placed the order(designed to ensure that each Expert Advisor places its own unique number)
 	/*
 		long 	Position identifier that is set to an order as soon as it is executed.Each executed order results in a
-	deal that opens or modifies an already existing position.The identifier of exactly this position is set to the executed
-	order at this moment.
-	*/
-	ORDER_POSITION_ID
+		deal that opens or modifies an already existing position.The identifier of exactly this position is set to the executed
+		order at this moment.
+		*/
+		ORDER_POSITION_ID
 };
 
 //For functions OrderGetDouble() and HistoryOrderGetDouble()
@@ -1499,15 +1501,13 @@ enum ENUM_ORDER_PROPERTY_DOUBLE{
 	ORDER_PRICE_STOPLIMIT //The Limit order price for the StopLimit order
 };
 
-
 //For functions OrderGetString() and HistoryOrderGetString()
 enum ENUM_ORDER_PROPERTY_STRING{
 	ORDER_SYMBOL, //Symbol of the order
 	ORDER_COMMENT //Order comment
 };
 
-
-//	When sending a trade request using the OrderSend() function, some operations require the indication of the order type.The order type is 
+//	When sending a trade request using the OrderSend() function, some operations require the indication of the order type.The order type is
 //specified in the type field of the special structure MqlTradeRequest, and can accept values of the ENUM_ORDER_TYPE enumeration.
 enum ENUM_ORDER_TYPE{
 	ORDER_TYPE_BUY, //Market Buy order
@@ -1535,58 +1535,56 @@ enum ENUM_ORDER_STATE{
 	ORDER_STATE_REQUEST_CANCEL //Order is being deleted(deleting from the trading system)
 };
 
-
-//	When sending a trade request using the OrderSend() function, the filling policy can be set for an order in the type_filling 
-//field of the special structure MqlTradeRequest.Values of the ENUM_ORDER_TYPE_FILLING enumeration are allowed.To obtain the value 
+//	When sending a trade request using the OrderSend() function, the filling policy can be set for an order in the type_filling
+//field of the special structure MqlTradeRequest.Values of the ENUM_ORDER_TYPE_FILLING enumeration are allowed.To obtain the value
 //of this property, use the function OrderGetInteger() or HistoryOrderGetInteger() with the ORDER_TYPE_FILLING modifier.
 enum ENUM_ORDER_TYPE_FILLING{
 	/*
-		This filling policy means that an order can be filled only in the specified amount.If the necessary 
+	This filling policy means that an order can be filled only in the specified amount.If the necessary
 	amount of a financial instrument is currently unavailable in the market, the order will not be executed.The
 	required volume can be filled using several offers available on the market at the moment.
 	*/
-	ORDER_FILLING_FOK, 
+	ORDER_FILLING_FOK,
 	/*
-		This mode means that a trader agrees to execute a deal with the volume maximally available in the market 
+	This mode means that a trader agrees to execute a deal with the volume maximally available in the market
 	within that indicated in the order.In case the the entire volume of an order cannot be filled, the available
 	volume of it will be filled, and the remaining volume will be canceled.
 	*/
-	ORDER_FILLING_IOC, 
+	ORDER_FILLING_IOC,
 	/*
-		This policy is used only for market orders(ORDER_TYPE_BUY and ORDER_TYPE_SELL), limit and stop limit 
-	orders(ORDER_TYPE_BUY_LIMIT, ORDER_TYPE_SELL_LIMIT, ORDER_TYPE_BUY_STOP_LIMIT and ORDER_TYPE_SELL_STOP_LIMIT) 
-	and only for the symbols with Market or Exchange execution.In case of partial filling a market or limit order 
+	This policy is used only for market orders(ORDER_TYPE_BUY and ORDER_TYPE_SELL), limit and stop limit
+	orders(ORDER_TYPE_BUY_LIMIT, ORDER_TYPE_SELL_LIMIT, ORDER_TYPE_BUY_STOP_LIMIT and ORDER_TYPE_SELL_STOP_LIMIT)
+	and only for the symbols with Market or Exchange execution.In case of partial filling a market or limit order
 	with remaining volume is not canceled but processed further.
-		For the activation of the ORDER_TYPE_BUY_STOP_LIMIT and ORDER_TYPE_SELL_STOP_LIMIT orders, a corresponding
+	For the activation of the ORDER_TYPE_BUY_STOP_LIMIT and ORDER_TYPE_SELL_STOP_LIMIT orders, a corresponding
 	limit order ORDER_TYPE_BUY_LIMIT / ORDER_TYPE_SELL_LIMIT with the ORDER_FILLING_RETURN execution type is created.
 	*/
-	ORDER_FILLING_RETURN 
+	ORDER_FILLING_RETURN
 };
 
 /*
-	The order validity period can be set in the type_time field of the special structure MqlTradeRequest when sending a trade request 
-sing the OrderSend() function.Values of the ENUM_ORDER_TYPE_TIME enumeration are allowed.To obtain the value of this property use the 
-function OrderGetInteger() or HistoryOrderGetInteger() with the ORDER_TYPE_TIME modifier.
-*/
+	The order validity period can be set in the type_time field of the special structure MqlTradeRequest when sending a trade request
+	sing the OrderSend() function.Values of the ENUM_ORDER_TYPE_TIME enumeration are allowed.To obtain the value of this property use the
+	function OrderGetInteger() or HistoryOrderGetInteger() with the ORDER_TYPE_TIME modifier.
+	*/
 enum ENUM_ORDER_TYPE_TIME{
 	ORDER_TIME_GTC, //Good till cancel order
 	ORDER_TIME_DAY, //Good till current trade day order
 	ORDER_TIME_SPECIFIED, //Good till expired order
-	/*	
-		The order will be effective till 00:00 of the specified day.If this time is outside a trading session,
+	/*
+	The order will be effective till 00:00 of the specified day.If this time is outside a trading session,
 	the order expires in the nearest trading time.
 	*/
-	ORDER_TIME_SPECIFIED_DAY 
+	ORDER_TIME_SPECIFIED_DAY
 };
-
 
 //-----------------Position Properties
 /*
-	Execution of trade operations results in the opening of a position, changing of its volume and / or direction, or its 
-disappearance.Trade operations are conducted based on orders, sent by the OrderSend() function in the form of trade requests.
-For each financial security(symbol) only one open position is possible.A position has a set of properties available for reading
-by the PositionGet...() functions.
-*/
+	Execution of trade operations results in the opening of a position, changing of its volume and / or direction, or its
+	disappearance.Trade operations are conducted based on orders, sent by the OrderSend() function in the form of trade requests.
+	For each financial security(symbol) only one open position is possible.A position has a set of properties available for reading
+	by the PositionGet...() functions.
+	*/
 //For the function PositionGetInteger()
 enum ENUM_POSITION_PROPERTY_INTEGER{
 	POSITION_TIME, //datetime Position open time
@@ -1596,10 +1594,10 @@ enum ENUM_POSITION_PROPERTY_INTEGER{
 	POSITION_TYPE, //ENUM_POSITION_TYPE Position type ENUM_POSITION_TYPE
 	POSITION_MAGIC, //long Position magic number(see ORDER_MAGIC)
 	/*
-		long Position identifier is a unique number that is assigned to every newly opened position and doesn't change
+	long Position identifier is a unique number that is assigned to every newly opened position and doesn't change
 	during the entire lifetime of the position. Position turnover doesn't change its identifier.
 	*/
-	POSITION_IDENTIFIER 
+	POSITION_IDENTIFIER
 };
 
 //For the function PositionGetDouble()
@@ -1614,31 +1612,27 @@ enum ENUM_POSITION_PROPERTY_DOUBLE{
 	POSITION_PROFIT		//double Current profit
 };
 
-
 //For the function PositionGetString()
 enum ENUM_POSITION_PROPERTY_STRING{
 	POSITION_SYMBOL, //string Symbol of the position
 	POSITION_COMMENT //string Position comment
 };
 
-
 /*
-	Direction of an open position(buy or sell) is defined by the value from the ENUM_POSITION_TYPE enumeration.In 
-order to obtain the type of an open position use the PositionGetInteger() function with the POSITION_TYPE modifier.
-*/
+	Direction of an open position(buy or sell) is defined by the value from the ENUM_POSITION_TYPE enumeration.In
+	order to obtain the type of an open position use the PositionGetInteger() function with the POSITION_TYPE modifier.
+	*/
 enum ENUM_POSITION_TYPE{
 	POSITION_TYPE_BUY, //Buy
 	POSITION_TYPE_SELL //Sell
 };
 
-
-
 //----------------------Deal Properties
 /*
-	A deal is the reflection of the fact of a trade operation execution based on an order that contains a trade request.Each 
-trade is described by properties that allow to obtain information about it.In order to read values of properties, functions 
-of the HistoryDealGet...() type are used, that return values from corresponding enumerations.
-*/
+	A deal is the reflection of the fact of a trade operation execution based on an order that contains a trade request.Each
+	trade is described by properties that allow to obtain information about it.In order to read values of properties, functions
+	of the HistoryDealGet...() type are used, that return values from corresponding enumerations.
+	*/
 //For the function HistoryDealGetInteger()
 enum ENUM_DEAL_PROPERTY_INTEGER{
 	DEAL_ORDER,  //long Deal order number
@@ -1649,10 +1643,10 @@ enum ENUM_DEAL_PROPERTY_INTEGER{
 	DEAL_MAGIC, //long Deal magic number(see ORDER_MAGIC)
 	/*
 		long 	Identifier of a position, in the opening, modification or change of which this deal took part.Each
-	position has a unique identifier that is assigned to all deals executed for the symbol during the
-	entire lifetime of the position.
-	*/
-	DEAL_POSITION_ID 
+		position has a unique identifier that is assigned to all deals executed for the symbol during the
+		entire lifetime of the position.
+		*/
+		DEAL_POSITION_ID
 };
 
 //For the function HistoryDealGetDouble()
@@ -1671,9 +1665,9 @@ enum ENUM_DEAL_PROPERTY_STRING{
 };
 
 /*
-	Each deal is characterized by a type, allowed values are enumerated in ENUM_DEAL_TYPE.In order to obtain information 
-about the deal type, use the HistoryDealGetInteger() function with the DEAL_TYPE modifier.
-*/
+	Each deal is characterized by a type, allowed values are enumerated in ENUM_DEAL_TYPE.In order to obtain information
+	about the deal type, use the HistoryDealGetInteger() function with the DEAL_TYPE modifier.
+	*/
 enum ENUM_DEAL_TYPE{
 	DEAL_TYPE_BUY, //Buy
 	DEAL_TYPE_SELL, //Sell
@@ -1689,13 +1683,13 @@ enum ENUM_DEAL_TYPE{
 	DEAL_TYPE_COMMISSION_AGENT_MONTHLY, //Monthly agent commission
 	DEAL_TYPE_INTEREST, //Interest rate
 	/*
-		Canceled buy deal.There can be a situation when a previously executed buy deal is canceled.In this case, the type of
-	the previously executed deal(DEAL_TYPE_BUY) is changed to DEAL_TYPE_BUY_CANCELED, and its profit / loss is zeroized.Previously 
+	Canceled buy deal.There can be a situation when a previously executed buy deal is canceled.In this case, the type of
+	the previously executed deal(DEAL_TYPE_BUY) is changed to DEAL_TYPE_BUY_CANCELED, and its profit / loss is zeroized.Previously
 	obtained profit / loss is charged / withdrawn using a separated balance operation
 	*/
 	DEAL_TYPE_BUY_CANCELED,
 	/*
-		Canceled sell deal.There can be a situation when a previously executed sell deal is canceled.In this case, the type of 
+	Canceled sell deal.There can be a situation when a previously executed sell deal is canceled.In this case, the type of
 	the previously executed deal(DEAL_TYPE_SELL) is changed to DEAL_TYPE_SELL_CANCELED, and its profit / loss is zeroized.Previously
 	obtained profit / loss is charged / withdrawn using a separated balance operation
 	*/
@@ -1703,24 +1697,63 @@ enum ENUM_DEAL_TYPE{
 };
 
 /*
-	Deals differ not only in their types set in ENUM_DEAL_TYPE, but also in the way they change positions.This can be a simple position 
-opening, or accumulation of a previously opened position(market entering), position closing by an opposite deal of a corresponding 
-volume(market exiting), or position reversing, if the opposite - direction deal covers the volume of the previously opened position.
+	Deals differ not only in their types set in ENUM_DEAL_TYPE, but also in the way they change positions.This can be a simple position
+	opening, or accumulation of a previously opened position(market entering), position closing by an opposite deal of a corresponding
+	volume(market exiting), or position reversing, if the opposite - direction deal covers the volume of the previously opened position.
 	All these situations are described by values from the ENUM_DEAL_ENTRY enumeration.In order to receive this information about a deal,
-use the HistoryDealGetInteger() function with the DEAL_ENTRY modifier.
-*/
+	use the HistoryDealGetInteger() function with the DEAL_ENTRY modifier.
+	*/
 enum ENUM_DEAL_ENTRY{
 	DEAL_ENTRY_IN, //Entry in
 	DEAL_ENTRY_OUT, //Entry out
 	DEAL_ENTRY_INOUT //Reverse
 };
 
+/*------------------Return Codes of the Trade Server
+	All requests to execute trade operations are sent as a structure of a trade request MqlTradeRequest using function OrderSend().The
+	function execution result is placed to structure MqlTradeResult, whose retcode field contains the trade server return code.
+
+	Constant							Code	Description
+	*/
+#define TRADE_RETCODE_REQUOTE				10004	//Requote
+#define TRADE_RETCODE_REJECT				10006 	//Request rejected
+#define TRADE_RETCODE_CANCEL				10007	//Request canceled by trader
+#define TRADE_RETCODE_PLACED				10008 	//Order placed
+#define TRADE_RETCODE_DONE					10009 	//Request completed
+#define TRADE_RETCODE_DONE_PARTIAL			10010 	//Only part of the request was completed
+#define TRADE_RETCODE_ERROR					10011 	//Request processing error
+#define TRADE_RETCODE_TIMEOUT				10012 	//Request canceled by timeout
+#define TRADE_RETCODE_INVALID				10013 	//Invalid request
+#define TRADE_RETCODE_INVALID_VOLUME		10014 	//Invalid volume in the request
+#define TRADE_RETCODE_INVALID_PRICE			10015 	//Invalid price in the request
+#define TRADE_RETCODE_INVALID_STOPS			10016 	//Invalid stops in the request
+#define TRADE_RETCODE_TRADE_DISABLED		10017 	//Trade is disabled
+#define TRADE_RETCODE_MARKET_CLOSED			10018 	//Market is closed
+#define TRADE_RETCODE_NO_MONEY				10019 	//There is not enough money to complete the request
+#define TRADE_RETCODE_PRICE_CHANGED			10020 	//Prices changed
+#define TRADE_RETCODE_PRICE_OFF				10021 	//There are no quotes to process the request
+#define TRADE_RETCODE_INVALID_EXPIRATION	10022 	//Invalid order expiration date in the request
+#define TRADE_RETCODE_ORDER_CHANGED			10023 	//Order state changed
+#define TRADE_RETCODE_TOO_MANY_REQUESTS		10024 	//Too frequent requests
+#define TRADE_RETCODE_NO_CHANGES			10025 	//No changes in request
+#define TRADE_RETCODE_SERVER_DISABLES_AT	10026 	//Autotrading disabled by server
+#define TRADE_RETCODE_CLIENT_DISABLES_AT	10027 	//Autotrading disabled by client terminal
+#define TRADE_RETCODE_LOCKED				10028 	//Request locked for processing
+#define TRADE_RETCODE_FROZEN				10029 	//Order or position frozen
+#define TRADE_RETCODE_INVALID_FILL			10030 	//Invalid order filling type
+#define TRADE_RETCODE_CONNECTION			10031 	//No connection with the trade server
+#define TRADE_RETCODE_ONLY_REAL				10032 	//Operation is allowed only for live accounts
+#define TRADE_RETCODE_LIMIT_ORDERS			10033 	//The number of pending orders has reached the limit
+#define TRADE_RETCODE_LIMIT_VOLUME			10034 	//The volume of orders and positions for the symbol has reached the limit
+#define TRADE_RETCODE_INVALID_ORDER			10035 	//Incorrect or prohibited order type
+#define TRADE_RETCODE_POSITION_CLOSED		10036 	//Position with the specified POSITION_IDENTIFIER has already been closed
+
 //-------------------------Trade Operation Types
 /*
-	Trading is done by sending orders to open positions using the OrderSend() function, as well as to place, modify or delete pending 
-orders.Each trade order refers to the type of the requested operation.Trading operations are described in the ENUM_TRADE_REQUEST_ACTIONS
-enumeration.
-*/
+	Trading is done by sending orders to open positions using the OrderSend() function, as well as to place, modify or delete pending
+	orders.Each trade order refers to the type of the requested operation.Trading operations are described in the ENUM_TRADE_REQUEST_ACTIONS
+	enumeration.
+	*/
 enum ENUM_TRADE_REQUEST_ACTIONS{
 	TRADE_ACTION_DEAL, //Place a trade order for an immediate execution with the specified parameters(market order)
 	TRADE_ACTION_PENDING, //Place a trade order for the execution under specified conditions(pending order)
@@ -1729,34 +1762,33 @@ enum ENUM_TRADE_REQUEST_ACTIONS{
 	TRADE_ACTION_REMOVE //Delete the pending order placed previously
 };
 
-
 //------------------Trade Transaction Types
 enum ENUM_TRADE_TRANSACTION_TYPE{
 	//Adding a new open order.
 	TRADE_TRANSACTION_ORDER_ADD,
 	/*
-		Updating an open order.The updates include not only evident changes from the client terminal or a trade server sides but
+	Updating an open order.The updates include not only evident changes from the client terminal or a trade server sides but
 	also changes of an order state when setting it(for example, transition from ORDER_STATE_STARTED to ORDER_STATE_PLACED or from
 	ORDER_STATE_PLACED to ORDER_STATE_PARTIAL, etc.).
 	*/
 	TRADE_TRANSACTION_ORDER_UPDATE,
 	/*
-		Removing an order from the list of the open ones.An order can be deleted from the open ones as a result of setting an 
+	Removing an order from the list of the open ones.An order can be deleted from the open ones as a result of setting an
 	appropriate request or execution(filling) and moving to the history.
 	*/
 	TRADE_TRANSACTION_ORDER_DELETE,
 	/*
-		Adding a deal to the history.The action is performed as a result of an order execution or performing operations with an 
+	Adding a deal to the history.The action is performed as a result of an order execution or performing operations with an
 	account balance.
 	*/
 	TRADE_TRANSACTION_DEAL_ADD,
 	/*
-		Updating a deal in the history.There may be cases when a previously executed deal is changed on a server.For example,
+	Updating a deal in the history.There may be cases when a previously executed deal is changed on a server.For example,
 	a deal has been changed in an external trading system(exchange) where it was previously transferred by a broker.
 	*/
 	TRADE_TRANSACTION_DEAL_UPDATE,
 	/*
-		Deleting a deal from the history.There may be cases when a previously executed deal is deleted from a server.For 
+	Deleting a deal from the history.There may be cases when a previously executed deal is deleted from a server.For
 	example, a deal has been deleted in an external trading system(exchange) where it was previously transferred by a broker.
 	*/
 	TRADE_TRANSACTION_DEAL_DELETE,
@@ -1768,28 +1800,26 @@ enum ENUM_TRADE_TRANSACTION_TYPE{
 
 	TRADE_TRANSACTION_HISTORY_DELETE,
 	/*
-		Changing a position not related to a deal execution.This type of transaction shows that a position has been changed
-	on a trade server side.Position volume, open price, Stop Loss and Take Profit levels can be changed.Data on changes are 
-	submitted in MqlTradeTransaction structure via OnTradeTransaction handler.Position change(adding, changing or closing), 
+	Changing a position not related to a deal execution.This type of transaction shows that a position has been changed
+	on a trade server side.Position volume, open price, Stop Loss and Take Profit levels can be changed.Data on changes are
+	submitted in MqlTradeTransaction structure via OnTradeTransaction handler.Position change(adding, changing or closing),
 	as a result of a deal execution, does not lead to the occurrence of TRADE_TRANSACTION_POSITION transaction.
 	*/
 	TRADE_TRANSACTION_POSITION,
 	/*
-		Notification of the fact that a trade request has been processed by a server and processing result has been received.
+	Notification of the fact that a trade request has been processed by a server and processing result has been received.
 	Only type field(trade transaction type) must be analyzed for such transactions in MqlTradeTransaction structure.The second
 	and third parameters of OnTradeTransaction(request and result) must be analyzed for additional data.
 	*/
 	TRADE_TRANSACTION_REQUEST
 };
 
-
-
 //--------------Trade Orders in Depth Of Market
 /*
 	To obtain information about the current state of the DOM by MQL5 means, the MarketBookGet() function is used, which places
-the DOM "screen shot" into the MqlBookInfo array of structures.Each element of the array in the type field contains information
-about the direction of the order - the value of the ENUM_BOOK_TYPE enumeration.
-*/
+	the DOM "screen shot" into the MqlBookInfo array of structures.Each element of the array in the type field contains information
+	about the direction of the order - the value of the ENUM_BOOK_TYPE enumeration.
+	*/
 enum ENUM_BOOK_TYPE{
 	BOOK_TYPE_SELL, //Sell order(Offer)
 	BOOK_TYPE_BUY, //Buy order(Bid)
@@ -1800,8 +1830,8 @@ enum ENUM_BOOK_TYPE{
 //--------------------Signal Properties
 /*
 	The following enumerations are used when working with trading signals and signal copy settings.
-Enumeration of double type properties of the trading signal :
-*/
+	Enumeration of double type properties of the trading signal :
+	*/
 enum ENUM_SIGNAL_BASE_DOUBLE{
 	SIGNAL_BASE_BALANCE,	//Account balance
 	SIGNAL_BASE_EQUITY,		//Account equity
@@ -1897,32 +1927,12 @@ since modern Macintosh computers use Unicode for encoding.
 #define	CP_UTF7    65000  //UTF - 7 code page.
 #define	CP_UTF8	   65001  //UTF - 8 code page.
 
-
+#define INIT_FAILED -1
+#define INIT_SUCCEEDED 1
 enum ENUM_COLOR_FORMAT{
 	COLOR_FORMAT_XRGB_NOALPHA, //The component of the alpha channel is ignored
 	COLOR_FORMAT_ARGB_RAW,	   //Color components are not handled by the terminal(must be correctly set by the user)
 	COLOR_FORMAT_ARGB_NORMALIZE //Color components are handled by the terminal
 };
-//#define PreVariable 
-double	Point = 0.00001;	
-int		Digits = 4;
-int		Bars = 100;
-double	Ask = 0.0;
-double	Bid = 0.0;
-double	Open[1];
-double	Close[1];
-double	High[1];
-double	Low[1];
-double	Volume[1];
-time_t  Time[1];
 
-//-------MQL5
-int    _Digits;
-double _Point;
-int    _LastError;
-int    _Period;
-//_RandomSeed
-bool   _StopFlag;
-string _Symbol;
-int    _UninitReason;
 #endif

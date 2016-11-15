@@ -58,7 +58,7 @@ void SetIndexArrow(int index, int code);
 /*
  * 	 Binds the array variable declared at a global level to the custom indicator
  * pre-defined buffer. The amount of buffers needed to calculate the indicator is
- * set with the IndicatorBuffers() function and cannot exceed 8. If it succeeds,
+ * set with the IndicatorBuffer() function and cannot exceed 8. If it succeeds,
  * true will be returned, otherwise, it will be false. To get the extended information
  * about the error, one has to call the GetLastError() function.
  *
