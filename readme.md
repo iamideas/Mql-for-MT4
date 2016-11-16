@@ -1,3 +1,4 @@
+<img src=https://raw.githubusercontent.com/iamideas/Mql-for-MT4/master/readme.png >
 #### 在使用visual studio编辑mq4文件时，会遇到的错误：
 0. 这个库无法被编译
 

@@ -45,10 +45,11 @@
   <ItemGroup>
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
+    <None Include="readme.md" />
     <None Include="StdLibErr.mqh" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="readme.txt" />
+    <Image Include="readme.jpg" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6781D294-5A6B-417B-90E9-128095A54AB3}</ProjectGuid>

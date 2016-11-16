@@ -13,50 +13,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="头文件\Arrays">
-      <UniqueIdentifier>{99942a88-ab11-4856-abc1-d40376fd8cdd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Canvas">
-      <UniqueIdentifier>{7031d8f8-638c-46b2-abc1-301149e52324}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\ChartObjects">
-      <UniqueIdentifier>{197b1e2c-5dcb-48ff-8159-491d87d4103f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Charts">
-      <UniqueIdentifier>{b2c8697f-0dc9-4057-a2cd-b229e1d8325f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Controls">
-      <UniqueIdentifier>{0db16435-f3ac-43c8-b127-8523d7f101cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Expert">
-      <UniqueIdentifier>{77a9111a-2b78-4b57-bf78-18c8dd3fa4e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Files">
-      <UniqueIdentifier>{9e48ab72-bc56-4de5-b95c-123b3dfdd177}</UniqueIdentifier>
-    </Filter>
     <Filter Include="头文件\Framework">
       <UniqueIdentifier>{fb2ef63d-96e1-42ae-8e57-015aa406ae94}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Indicators">
-      <UniqueIdentifier>{acb6ee10-7112-42e5-a065-1d71610b2e8e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Strings">
-      <UniqueIdentifier>{ccd3d4c6-221c-4e7b-a26c-71ac6be6fcac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Tools">
-      <UniqueIdentifier>{085ef86a-8846-43f8-a56f-3dec69f76273}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Trade">
-      <UniqueIdentifier>{25587950-e33d-47b1-9a69-e0cdd1ae68dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Expert\Money">
-      <UniqueIdentifier>{5661fb01-0450-4f0b-bb53-e8def4c036fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Expert\Signal">
-      <UniqueIdentifier>{efdbdbbf-0922-446b-be42-260a9ec0e946}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Expert\Trading">
-      <UniqueIdentifier>{14319084-248d-4dd9-b0c6-666ac81867e5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -155,8 +113,11 @@
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
     <None Include="StdLibErr.mqh" />
+    <None Include="readme.md" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="readme.txt" />
+    <Image Include="readme.jpg">
+      <Filter>资源文件</Filter>
+    </Image>
   </ItemGroup>
 </Project>
