@@ -21,7 +21,7 @@
 1. 如果是首次使用：
   1. 依次打开 VS - 工具 - 选项 - 文本编辑器 - 文件扩展名 - 添加.mq4/.mqh，编辑器使用Microsoft C++
   2. 在MT4目录include\下创建MQLLibrary.mqh文件，添加下面一行到文件中
-    #include"实际MQLLibrary库目录/MQLLibrary.h"        
+     #include"Mql-for-MT4库目录/MQLLibrary.h"        
   3. 右键项目名 -> 属性 -> VC++目录 - > 包含 $MT4实际目录$\include
 2. 新建空的C++工程，在源文件目录中新建源文件.mq4或引入某.mq4文件。
   修改文件头部：
