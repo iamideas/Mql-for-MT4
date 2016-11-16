@@ -27,6 +27,7 @@
 #include"PriceInfo.h"
 #include"stderror.h"
 #include"stdlib.h"
+#include"StdLibErr.mqh"
 #include"string.h"
 #include"Terminal.h"
 #include"Time.h"
