@@ -9,8 +9,8 @@
 #include"DataType.h"
 #include"DataStructures.h"
 
-#define MODE_TRADES  1
-#define MODE_HISTORY 2
+#define MODE_TRADES  0
+#define MODE_HISTORY 1
 #define SELECT_BY_POS 1
 #define SELECT_BY_TICKET 2
 //Returns true if successful, otherwise false. To get additional error information, one has to call the GetLastError() function.

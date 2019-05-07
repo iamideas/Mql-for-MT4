@@ -31,9 +31,13 @@ string operator+( string lhs, datetime rhs ) { }
 datetime operator-(datetime &lhs, int rhs){ }
 int operator-(datetime &lhs, datetime &rhs){ }
 bool operator>( datetime &lhs, datetime &rhs ) { }
+bool operator>=(datetime &lhs, datetime &rhs) { }
 bool operator<( datetime &lhs, datetime &rhs ) { }
+bool operator<=(datetime &lhs, datetime &rhs) { }
 bool operator>( datetime &lhs, int rhs ) { }
+bool operator>=(datetime &lhs, int rhs) { }
 bool operator<( datetime &lhs, int rhs ) { }
+bool operator<=(datetime &lhs, int rhs) { }
 bool operator==( datetime &lhs, datetime &rhs ) { }
 
 
