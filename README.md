@@ -1,12 +1,13 @@
 <img src=https://github.com/iamideas/Mql-for-MT4/blob/master/readme.jpg>
+
 #### 在使用visual studio编辑mq4文件时，会遇到的错误：
 0. 这个库无法被编译
 1. 无法实现兼容的预处理命令
   1. #import
-    #import 无法导入.ex4类型的库
-    出现此错误的位置： WinUser32.h -> #import "user32.dll"
+     #import 无法导入.ex4类型的库
+     出现此错误的位置： WinUser32.h -> #import "user32.dll"
   2. #property 
-    #property 预处理命令是在mt4中拥有的,VS无法处理该预处理命令，需要注释或使用#if/#endif 控制
+     #property 预处理命令是在mt4中拥有的,VS无法处理该预处理命令，需要注释或使用#if/#endif 控制
 
 2. 在vs中不能处理类似 " "+非string字符串+" "的字符串运算会提示错误。
 3. color和datetime的字符定义模式在VS中会提示错误：
